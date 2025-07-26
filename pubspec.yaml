@@ -16,7 +16,10 @@ dependencies:
   flame: ^1.30.1
   flutter_animate: ^4.5.2
   google_fonts: ^6.2.1
-
+  volume_controller: ^3.4.0
+  universal_platform:
+    git:
+      url: "https://github.com/qinshah/flutter-universal-platform.git"
 dev_dependencies:
   flutter_test:
     sdk: flutter
