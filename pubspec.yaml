@@ -12,19 +12,28 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.8
-  flame: ^1.30.1
-  flutter_animate: ^4.5.2
-  google_fonts: ^6.2.1
-  volume_controller: ^3.4.0
-  universal_platform:
+  flame: ^1.30.1 # 游戏引擎
+  volume_controller: ^3.4.0 # 音量控制
+  open_file: ^3.5.10 # 原生打开文件
+  open_file_ohos: # 鸿蒙原生打开文件
+    # 两个版本都依赖，但使用的时候导入open_file_ohos就都能用
+    git:
+      url: "https://gitcode.com/openharmony-sig/fluttertpc_open_file.git"
+      path: "ohos"
+  file_selector: # 文件选择器
+    git:
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+      path: "packages/file_selector/file_selector"
+  universal_platform: # 平台判断
     git:
       url: "https://github.com/qinshah/flutter-universal-platform.git"
+  lottie: ^3.3.1 # lottie动画
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
   flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/lottiefiles/

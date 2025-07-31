@@ -1,11 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:volume_controller/volume_controller.dart';
 
@@ -19,7 +15,7 @@ class VolumeCntlPage extends StatefulWidget {
 }
 
 class _VolumeCntlPageState extends State<VolumeCntlPage> {
-  late final VolumeController _volumeController;
+  late dynamic _volumeController;
   late final StreamSubscription<double> _subscription;
 
   double _currentVolume = 0;
@@ -29,7 +25,10 @@ class _VolumeCntlPageState extends State<VolumeCntlPage> {
   @override
   void initState() {
     super.initState();
+    newMethod();
+  }
 
+  Future<void> newMethod() async {
     _volumeController = VolumeController.instance;
 
     // Listen to system volume change
