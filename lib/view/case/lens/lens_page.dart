@@ -11,7 +11,6 @@ class LensPage extends StatefulWidget {
 
 class _LensPageState extends State<LensPage> {
   Offset _position = const Offset(100, 100);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class FlexLayoutPage extends StatefulWidget {
   const FlexLayoutPage({super.key});
@@ -10,113 +10,249 @@ class FlexLayoutPage extends StatefulWidget {
 }
 
 class _FlexLayoutPageState extends State<FlexLayoutPage> {
-  List<GlobalKey> _childKeys = [];
   List<Map<String, dynamic>> _childrenInfo = [];
-
   final _random = Random();
   var _direction = Axis.vertical;
+  int _childCount = 3;
+  List<double> _childSizes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _generateChildSizes();
+  }
+
+  void _generateChildSizes() {
+    _childSizes =
+        List.generate(_childCount, (index) => 50.0 + _random.nextInt(100));
+  }
+
   void _refresh() {
     setState(() {
       _direction =
           _direction == Axis.vertical ? Axis.horizontal : Axis.vertical;
-      int childCount = 2 + _random.nextInt(4);
-      _childKeys = List.generate(childCount, (index) => GlobalKey());
-      _childrenInfo.clear();
-    });
-
-    // 延迟获取布局信息，等待渲染完成
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _getChildrenInfo();
+      _childCount = 2 + _random.nextInt(4);
+      _generateChildSizes();
     });
   }
 
-  void _getChildrenInfo() {
-    List<Map<String, dynamic>> info = [];
-
-    for (int i = 0; i < _childKeys.length; i++) {
-      final RenderBox? renderBox =
-          _childKeys[i].currentContext?.findRenderObject() as RenderBox?;
-
-      if (renderBox != null) {
-        final size = renderBox.size;
-        final position = renderBox.localToGlobal(Offset.zero);
-
-        info.add({
-          'index': i,
-          'width': size.width,
-          'height': size.height,
-          'x': position.dx,
-          'y': position.dy,
+  void _onLayoutUpdate(List<Map<String, dynamic>> info) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        setState(() {
+          _childrenInfo = info;
         });
       }
-    }
-
-    setState(() {
-      _childrenInfo = info;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Flex研究')),
+      appBar: AppBar(title: const Text('Flex研究 - 继承RenderFlex (超简单)')),
       body: Column(
         children: [
-          SizedBox(width: double.maxFinite),
+          // 主要布局区域
           Expanded(
-            child: ColoredBox(
-              color: Colors.blue.shade100,
-              child: Stack(
-                children: [
-                  Flex(
-                    direction: _direction,
-                    children: List.generate(_childKeys.length, (index) {
-                      return _grid('格子$index', 50.0 + _random.nextInt(100),
-                          _childKeys[index]);
-                    }),
-                  ),
-                ],
+            child: Container(
+              width: double.infinity,
+              color: Colors.blue.shade50,
+              padding: EdgeInsets.all(16),
+              child: FlexBar(
+                direction: _direction,
+                onLayoutUpdate: _onLayoutUpdate,
+                children: List.generate(_childCount, (index) {
+                  return _buildChild('格子$index', _childSizes[index], index);
+                }),
               ),
             ),
           ),
-          Text('子组件布局信息', style: TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          SizedBox(
-            height: 100,
-            child: _childrenInfo.isEmpty
-                ? Text('点击变换按钮获取布局信息')
-                : ListView.builder(
-                    itemCount: _childrenInfo.length,
-                    itemBuilder: (context, index) {
-                      final info = _childrenInfo[index];
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 2),
-                        child: Text(
-                          '格子${info['index']}: 尺寸(${info['width']}×${info['height']}) 位置(${info['x']}, ${info['y']})',
-                          style: TextStyle(fontSize: 12),
+
+          // 信息面板
+          Container(
+            height: 200,
+            padding: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade100,
+              border: Border(top: BorderSide(color: Colors.grey.shade300)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text('方向: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(_direction == Axis.vertical ? '垂直' : '水平'),
+                    Spacer(),
+                    Text('数量: $_childCount'),
+                  ],
+                ),
+                SizedBox(height: 8),
+                Expanded(
+                  child: _childrenInfo.isEmpty
+                      ? Center(child: Text('布局信息加载中...'))
+                      : ListView.builder(
+                          itemCount: _childrenInfo.length,
+                          itemBuilder: (context, index) {
+                            final info = _childrenInfo[index];
+                            return Container(
+                              margin: EdgeInsets.only(bottom: 4),
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: Colors.grey.shade300),
+                              ),
+                              child: Text(
+                                '格子${info['index']}: ${info['width'].toStringAsFixed(0)}×${info['height'].toStringAsFixed(0)} 位置(${info['x'].toStringAsFixed(0)}, ${info['y'].toStringAsFixed(0)})',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
+                ),
+              ],
+            ),
           ),
-          TextButton.icon(
-            onPressed: _refresh,
-            label: Text('变换'),
-            icon: Icon(Icons.refresh),
-          )
+
+          // 控制按钮
+          Padding(
+            padding: EdgeInsets.all(12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: _refresh,
+                  child: Text('变换方向'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _generateChildSizes();
+                    });
+                  },
+                  child: Text('随机尺寸'),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget _grid(String title, double size, GlobalKey key) {
+  Widget _buildChild(String title, double size, int index) {
     return Container(
-      key: key,
       width: size,
       height: size,
-      color:
-          Colors.accents[title.hashCode % Colors.accents.length].withAlpha(128),
-      child: Center(child: Text(title)),
+      margin: EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: Colors.accents[index % Colors.accents.length].withOpacity(0.7),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.white, width: 2),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(title,
+                style: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold)),
+            Text('${size.toInt()}',
+                style: TextStyle(color: Colors.white70, fontSize: 10)),
+          ],
+        ),
+      ),
     );
+  }
+}
+
+class FlexBar extends Flex {
+  final Function onLayoutUpdate;
+
+  const FlexBar({
+    super.key,
+    required super.direction,
+    required this.onLayoutUpdate,
+    super.mainAxisAlignment,
+    super.mainAxisSize,
+    super.crossAxisAlignment,
+    super.textDirection,
+    super.verticalDirection,
+    super.textBaseline,
+    super.clipBehavior,
+    super.spacing,
+    super.children,
+  });
+
+  @override
+  RenderFlex createRenderObject(BuildContext context) {
+    return RenderFlexBar(
+      onLayoutUpdate: onLayoutUpdate,
+      direction: direction,
+      mainAxisAlignment: mainAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      crossAxisAlignment: crossAxisAlignment,
+      textDirection: getEffectiveTextDirection(context),
+      verticalDirection: verticalDirection,
+      textBaseline: textBaseline,
+      clipBehavior: clipBehavior,
+      spacing: spacing,
+    );
+  }
+}
+
+class RenderFlexBar extends RenderFlex {
+  Function onLayoutUpdate;
+
+  RenderFlexBar({
+    required this.onLayoutUpdate,
+    super.children,
+    super.direction,
+    super.mainAxisSize,
+    super.mainAxisAlignment,
+    super.crossAxisAlignment,
+    super.textDirection,
+    super.verticalDirection,
+    super.textBaseline,
+    super.clipBehavior,
+    super.spacing,
+  });
+
+  @override
+  void performLayout() {
+    // 1. 调用父类布局 - 保持完整的Flex布局逻辑
+    super.performLayout();
+
+    // 2. 布局完成后，直接收集子组件信息
+    _collectChildrenInfo();
+  }
+
+  void _collectChildrenInfo() {
+    List<Map<String, dynamic>> info = [];
+
+    RenderBox? child = firstChild;
+    int index = 0;
+
+    // 遍历所有子组件，获取布局信息
+    while (child != null) {
+      final FlexParentData childParentData = child.parentData as FlexParentData;
+
+      info.add({
+        'index': index,
+        'width': child.size.width,
+        'height': child.size.height,
+        'x': childParentData.offset.dx,
+        'y': childParentData.offset.dy,
+        'flex': childParentData.flex ?? 0,
+        'fit': childParentData.fit.toString(),
+      });
+
+      child = childParentData.nextSibling;
+      index++;
+    }
+
+    // 3. 通知上层更新
+    onLayoutUpdate(info);
   }
 }
