@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/page_model.dart';
+
 class BottomNavPage extends StatefulWidget {
   const BottomNavPage({super.key});
 
@@ -8,10 +10,25 @@ class BottomNavPage extends StatefulWidget {
 }
 
 class _BottomNavPageState extends State<BottomNavPage> {
-  late final List<PageItem> _pages = [
-    PageItem('首页', PageBuilder(key: Key('首页'),), const Icon(Icons.home)),
-    PageItem('搜索',  PageBuilder(key: Key('搜索'),), const Icon(Icons.search)),
-    PageItem('我的',  PageBuilder(key: Key('我的'),), const Icon(Icons.person)),
+  late final List<PageModel> _pages = [
+    PageModel(
+        '首页',
+        PageBuilder(
+          key: Key('首页'),
+        ),
+        const Icon(Icons.home)),
+    PageModel(
+        '搜索',
+        PageBuilder(
+          key: Key('搜索'),
+        ),
+        const Icon(Icons.search)),
+    PageModel(
+        '我的',
+        PageBuilder(
+          key: Key('我的'),
+        ),
+        const Icon(Icons.person)),
   ];
   int _currentIndex = 0;
 
@@ -46,13 +63,6 @@ class _BottomNavPageState extends State<BottomNavPage> {
       ),
     );
   }
-}
-
-class PageItem {
-  final String title;
-  final Widget icon;
-  final Widget page;
-  PageItem(this.title, this.page, this.icon);
 }
 
 class PageBuilder extends StatefulWidget {

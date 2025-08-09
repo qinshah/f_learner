@@ -28,6 +28,7 @@ dependencies:
     git:
       url: "https://github.com/qinshah/flutter-universal-platform.git"
   lottie: ^3.3.1 # lottie动画
+  flutter_svg: ^2.2.0
 dev_dependencies:
   flutter_lints: ^5.0.0
 

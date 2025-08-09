@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'main_page.dart';
+import 'view/main/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FLearner',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
+      darkTheme: ThemeData.dark(),
       home: const MainPage(),
     );
   }

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:volume_controller/volume_controller.dart';
 
-import '../widgets/plugin_info_table.dart';
+import '../../widget/plugin_info_table.dart';
 
 class VolumeCntlPage extends StatefulWidget {
   const VolumeCntlPage({super.key});
@@ -166,8 +166,6 @@ class OhosVolumePanel extends StatelessWidget {
   const OhosVolumePanel({
     super.key,
   });
-
-  final String _viewType = '<platform-view-type>';
 
   @override
   Widget build(BuildContext context) {
