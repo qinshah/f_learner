@@ -1,52 +1,50 @@
 {
-  "app": {
-    "signingConfigs": [
+  app: {
+    products: [
       {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "/Users/qshh/.ohos/config/default_ohos_SIQ34VEa7fpLV3qADyo9__HW9Iz_lZHURpds5iiQ8Jc=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BD232CF9F6356859CC48134B75DADDD4DC9184CE2D0CBA1961DDB4218357F1BBD938A4C964D1BE0",
-          "profile": "/Users/qshh/.ohos/config/default_ohos_SIQ34VEa7fpLV3qADyo9__HW9Iz_lZHURpds5iiQ8Jc=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "/Users/qshh/.ohos/config/default_ohos_SIQ34VEa7fpLV3qADyo9__HW9Iz_lZHURpds5iiQ8Jc=.p12",
-          "storePassword": "0000001B190F26E1688AAF9E2BCFDBF810DA174B66B84B29E1E492766051392F3B63F9DDF604BC044D56EA"
-        }
-      }
+        name: "default",
+        signingConfig: "default",
+        compatibleSdkVersion: 15,
+        compileSdkVersion: 15,
+        runtimeOS: "OpenHarmony",
+      },
     ],
-    "products": [
+    buildModeSet: [
       {
-        "name": "default",
-        "signingConfig": "default",
-        "compatibleSdkVersion": "5.0.3(15)",
-        "runtimeOS": "HarmonyOS"
-      }
-    ],
-    "buildModeSet": [
-      {
-        "name": "debug"
+        name: "debug",
       },
       {
-        "name": "profile"
+        name: "profile",
       },
       {
-        "name": "release"
-      }
-    ]
+        name: "release",
+      },
+    ],
+    signingConfigs: [
+      {
+        name: "default",
+        material: {
+          certpath: "/Users/qshh/.ohos/config/openharmony/default_ohos_7L1A29kcAj41Tq9LwfuL88_NvPozBHVlHklsG647jBI=.cer",
+          keyAlias: "debugKey",
+          keyPassword: "0000001B5427884A7FF1227E1B8AF676920C2F75547917D009D2DCFC2FDBF4D35EB6A426B06A9C570B28BB",
+          profile: "/Users/qshh/.ohos/config/openharmony/default_ohos_7L1A29kcAj41Tq9LwfuL88_NvPozBHVlHklsG647jBI=.p7b",
+          signAlg: "SHA256withECDSA",
+          storeFile: "/Users/qshh/.ohos/config/openharmony/default_ohos_7L1A29kcAj41Tq9LwfuL88_NvPozBHVlHklsG647jBI=.p12",
+          storePassword: "0000001B1CDFE0D8FC3193C1E600D4F141ADFDDC5AB5F76F0BC0F7944F25D8D5338572EE252CC1904F7657",
+        },
+      },
+    ],
   },
-  "modules": [
+  modules: [
     {
-      "name": "entry",
-      "srcPath": "./entry",
-      "targets": [
+      name: "entry",
+      srcPath: "./entry",
+      targets: [
         {
-          "name": "default",
-          "applyToProducts": [
-            "default"
-          ]
-        }
-      ]
-    }
-  ]
+          name: "default",
+          applyToProducts: ["default"],
+        },
+      ],
+    },
+  ],
 }

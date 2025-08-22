@@ -21,32 +21,6 @@ export struct VolumePanel {
         Button('弹窗', { type: ButtonType.Capsule, stateEffect: true })
           .onClick(() => {
             this.getUIContext()
-              .getPromptAction()
-              .openCustomDialog({
-                builder: () => {
-                  AVVolumePanel({
-                    volumeLevel: 1
-                  })
-                },
-                isModal: true,
-                showInSubWindow: false,
-                maskColor: Color.Pink,
-                maskRect: {
-                  x: 20,
-                  y: 20,
-                  width: '90%',
-                  height: '90%'
-                },
-
-                dialogTransition: // 设置弹窗内容显示的过渡效果
-                TransitionEffect.translate({ x: 0, y: 290, z: 0 })
-                  .animation({ duration: 4000, curve: Curve.Smooth }), // 四秒钟的偏移渐变动画
-
-                maskTransition: // 设置蒙层显示的过渡效果
-                TransitionEffect.opacity(0)
-                  .animation({ duration: 4000, curve: Curve.Smooth }) // 四秒钟的透明渐变动画
-
-              })
           })
         AVVolumePanel({
           volumeLevel: 1
