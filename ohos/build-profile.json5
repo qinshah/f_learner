@@ -1,13 +1,13 @@
 {
   app: {
-    products: [
+    "products": [
       {
-        name: "default",
-        signingConfig: "default",
-        compatibleSdkVersion: 15,
-        compileSdkVersion: 15,
-        runtimeOS: "OpenHarmony",
-      },
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "5.0.5(17)",
+        "compatibleSdkVersion": "5.0.5(17)",
+        "runtimeOS": "HarmonyOS"
+      }
     ],
     buildModeSet: [
       {
@@ -22,17 +22,18 @@
     ],
     signingConfigs: [
       {
-        name: "default",
-        material: {
-          certpath: "/Users/qshh/.ohos/config/openharmony/default_ohos_7L1A29kcAj41Tq9LwfuL88_NvPozBHVlHklsG647jBI=.cer",
-          keyAlias: "debugKey",
-          keyPassword: "0000001B5427884A7FF1227E1B8AF676920C2F75547917D009D2DCFC2FDBF4D35EB6A426B06A9C570B28BB",
-          profile: "/Users/qshh/.ohos/config/openharmony/default_ohos_7L1A29kcAj41Tq9LwfuL88_NvPozBHVlHklsG647jBI=.p7b",
-          signAlg: "SHA256withECDSA",
-          storeFile: "/Users/qshh/.ohos/config/openharmony/default_ohos_7L1A29kcAj41Tq9LwfuL88_NvPozBHVlHklsG647jBI=.p12",
-          storePassword: "0000001B1CDFE0D8FC3193C1E600D4F141ADFDDC5AB5F76F0BC0F7944F25D8D5338572EE252CC1904F7657",
-        },
-      },
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/qshh/.ohos/config/default_ohos_qTWK4wjanR6q1-f2RGnzgf_4Siz7vmOkcdh5gUSHhKQ=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B3B0AF2B07C4FF06EF731DD807D889DB67037CB61BEEBE3E857EFBCCB3538678A99072753781263",
+          "profile": "/Users/qshh/.ohos/config/default_ohos_qTWK4wjanR6q1-f2RGnzgf_4Siz7vmOkcdh5gUSHhKQ=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/qshh/.ohos/config/default_ohos_qTWK4wjanR6q1-f2RGnzgf_4Siz7vmOkcdh5gUSHhKQ=.p12",
+          "storePassword": "0000001B542BCE3ABD435E10B54AA1D7970A4D956DE3DA159E92BDE2325332ED5005E1F10A19DCC39FF040"
+        }
+      }
     ],
   },
   modules: [
@@ -42,7 +43,9 @@
       targets: [
         {
           name: "default",
-          applyToProducts: ["default"],
+          applyToProducts: [
+            "default"
+          ],
         },
       ],
     },

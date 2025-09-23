@@ -13,7 +13,7 @@ class PlatformJudgePage extends StatelessWidget {
         "Web: ${UniversalPlatform.isWeb} \n "
         "MacOS: ${UniversalPlatform.isMacOS} \n"
         "Windows: ${UniversalPlatform.isWindows} \n"
-        "OhOS: ${UniversalPlatform.isOhos} \n"
+        // "OhOS: ${UniversalPlatform.isOhos} \n"
         "Linux: ${UniversalPlatform.isLinux} \n"
         "Android: ${UniversalPlatform.isAndroid} \n"
         "IOS: ${UniversalPlatform.isIOS} \n"

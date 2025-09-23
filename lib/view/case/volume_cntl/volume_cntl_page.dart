@@ -133,18 +133,18 @@ class _VolumeCntlPageState extends State<VolumeCntlPage> {
             ],
           ),
         ),
-        TextButton(
-          onPressed: UniversalPlatform.isOhos
-              ? () {
-                  showAdaptiveDialog(
-                    context: context,
-                    barrierDismissible: true, // 允许点击外部关闭对话框
-                    builder: (_) => Dialog(child: OhosVolumePanel()),
-                  );
-                }
-              : null,
-          child: Text('鸿蒙系统音量面板'),
-        ),
+        // TextButton(
+        //   onPressed: UniversalPlatform.isOhos
+        //       ? () {
+        //           showAdaptiveDialog(
+        //             context: context,
+        //             barrierDismissible: true, // 允许点击外部关闭对话框
+        //             builder: (_) => Dialog(child: OhosVolumePanel()),
+        //           );
+        //         }
+        //       : null,
+        //   child: Text('鸿蒙系统音量面板'),
+        // ),
       ]),
     );
   }
@@ -169,8 +169,10 @@ class OhosVolumePanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OhosView(
-      viewType: 'OhosVolumePanel',
+    return SizedBox(
+      // child: OhosView(
+      //   viewType: 'OhosVolumePanel',
+      // ),
     );
   }
 }

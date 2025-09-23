@@ -31,8 +31,8 @@ class _CasePageState extends State<CasePage> {
                 _navTile('底部导航', const BottomNavPage()),
                 _navTile('Flame 游戏引擎', const FlamePage()),
                 _navTile('平台判断', const PlatformJudgePage()),
-                if (UniversalPlatform.isOhos)
-                  _navTile('平台视图（鸿蒙）', const PlatformViewPage()),
+                // if (UniversalPlatform.isOhos)
+                //   _navTile('平台视图（鸿蒙）', const PlatformViewPage()),
                 _navTile('音量控制', const VolumeCntlPage()),
                 _navTile('打开文件', const OpenFilePage()),
                 _navTile('lottie动画', const LottiePage()),

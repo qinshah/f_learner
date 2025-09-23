@@ -12,14 +12,14 @@ class _PlatformViewPageState extends State<PlatformViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('平台视图（鸿蒙）')),
-      body: Center(
-        child: OhosView(
-          viewType: 'com.huangyuanlove/customView',
-          onPlatformViewCreated: (id) {
-            print('平台视图（鸿蒙）创建了，id: $id');
-          },
-        ),
-      ),
+      // body: Center(
+      //   child: OhosView(
+      //     viewType: 'com.huangyuanlove/customView',
+      //     onPlatformViewCreated: (id) {
+      //       print('平台视图（鸿蒙）创建了，id: $id');
+      //     },
+      //   ),
+      // ),
     );
   }
 }
