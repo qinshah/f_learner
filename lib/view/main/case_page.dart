@@ -5,6 +5,7 @@ import '../case/bottom_nav/bottom_nav_page.dart';
 import '../case/flame/flame_page.dart';
 import '../case/platform_judge/platform_judge_page.dart';
 import '../case/platform_view/platform_view_page.dart';
+import '../case/quill/quill_page.dart';
 import '../case/volume_cntl/volume_cntl_page.dart';
 import '../case/open_file/open_file_page.dart';
 import '../case/lottie/lottie_page.dart';
@@ -38,6 +39,7 @@ class _CasePageState extends State<CasePage> {
                 _navTile('lottie动画', const LottiePage()),
                 _navTile('透镜', const LensPage()),
                 _navTile('Flex研究', const FlexLayoutPage()),
+                _navTile('Quill富文本', const QuillPage()),
               ],
             ),
           )
