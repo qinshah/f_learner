@@ -5,7 +5,7 @@ import '../nav_or_routes/bottom_nav_page.dart';
 import '../nav_or_routes/routes_nav_page.dart';
 import '../platform_judge/platform_judge_page.dart';
 import '../env_variables/env_variables_page.dart';
-import '../quill/quill_page.dart';
+// import '../quill/quill_page.dart'; // 不支持鸿蒙flutter
 import '../open_file/open_file_page.dart';
 import '../lottie/lottie_page.dart';
 import '../lens/lens_page.dart';
@@ -43,7 +43,7 @@ class _MainPageState extends State<MainPage> {
             _navTile('打开文件', const OpenFilePage()),
           ]),
           _category('实用组件', [
-            _navTile('Quill富文本', const QuillPage()),
+            // _navTile('Quill富文本', const QuillPage()), //不支持鸿蒙flutter
             _navTile('lottie动画', const LottiePage()),
           ]),
           _category('组件/布局研究', [
@@ -63,7 +63,7 @@ class _MainPageState extends State<MainPage> {
         shape: OutlineInputBorder(),
         initiallyExpanded: true,
         title: Text(name),
-        textColor: primaryColor,  
+        textColor: primaryColor,
         collapsedTextColor: primaryColor,
         childrenPadding: EdgeInsets.only(left: 6),
         children: children,

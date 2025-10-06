@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_quill/flutter_quill.dart';
+// import 'package:flutter_quill/flutter_quill.dart'; // 不支持鸿蒙flutter
 
 import 'view/main/main_page.dart';
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        FlutterQuillLocalizations.delegate,
+        // FlutterQuillLocalizations.delegate, // 不支持鸿蒙flutter
       ],
       supportedLocales: [const Locale('zh', 'CN')],
       home: const MainPage(),
