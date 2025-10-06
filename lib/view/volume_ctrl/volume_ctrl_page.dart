@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:volume_controller/volume_controller.dart';
 
-import '../../widget/plugin_info_table.dart';
+import '../widget/plugin_info_table.dart';
 
-class VolumeCntlPage extends StatefulWidget {
-  const VolumeCntlPage({super.key});
+class VolumeCtrlPage extends StatefulWidget {
+  const VolumeCtrlPage({super.key});
 
   @override
-  State<VolumeCntlPage> createState() => _VolumeCntlPageState();
+  State<VolumeCtrlPage> createState() => _VolumeCtrlPageState();
 }
 
-class _VolumeCntlPageState extends State<VolumeCntlPage> {
+class _VolumeCtrlPageState extends State<VolumeCtrlPage> {
   late dynamic _volumeController;
   late final StreamSubscription<double> _subscription;
 

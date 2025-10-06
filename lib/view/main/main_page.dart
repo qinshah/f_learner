@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../model/page_model.dart';
-import 'case_page.dart';
-import 'layout_page.dart';
+import '../flame/flame_page.dart';
+import '../nav_or_routes/bottom_nav_page.dart';
+import '../nav_or_routes/routes_nav_page.dart';
+import '../platform_judge/platform_judge_page.dart';
+import '../quill/quill_page.dart';
+import '../open_file/open_file_page.dart';
+import '../lottie/lottie_page.dart';
+import '../lens/lens_page.dart';
+import '../flex_layout/flex_layout_page.dart';
+import '../volume_ctrl/volume_ctrl_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -12,37 +19,66 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  late final List<PageModel> _pages = [
-    PageModel('案例', CasePage(), const Icon(Icons.cases)),
-    PageModel('布局', LayoutPage(), const Icon(Icons.layers)),
-  ];
-  int _currentIndex = 0;
-
-  void _changePage(int tapedIndex) {
-    setState(() {
-      _currentIndex = tapedIndex;
-    });
-  }
-
-  // build函数主要是负责UI的构建
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('FLearner')),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages.map((e) => e.page).toList(),
+      body: ListView(
+        padding: const EdgeInsets.all(8),
+        children: [
+          _category('导航或路由', [
+            _navTile('简单底部导航', const BottomNavPage()),
+            _navTile('嵌套路由导航', const RoutesNavPage()),
+          ]),
+          _category('Flame游戏引擎', [
+            _navTile('入门', const FlamePage()),
+          ]),
+          _category('系统', [
+            _navTile('平台判断', const PlatformJudgePage()),
+            // if (UniversalPlatform.isOhos)
+            //   _navTile('平台视图（鸿蒙）', const PlatformViewPage()),
+            _navTile('音量控制', const VolumeCtrlPage()),
+            _navTile('打开文件', const OpenFilePage()),
+          ]),
+          _category('实用组件', [
+            _navTile('Quill富文本', const QuillPage()),
+            _navTile('lottie动画', const LottiePage()),
+          ]),
+          _category('组件/布局研究', [
+            _navTile('透镜', const LensPage()),
+            _navTile('Flex研究', const FlexLayoutPage()),
+          ]),
+        ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        items: _pages
-            .map((e) => BottomNavigationBarItem(
-                  icon: e.icon,
-                  label: e.title,
-                ))
-            .toList(),
-        onTap: _changePage,
+    );
+  }
+
+  Widget _category(String name, List<Widget> children) {
+    final primaryColor = Theme.of(context).colorScheme.primary;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: ExpansionTile(
+        shape: OutlineInputBorder(),
+        initiallyExpanded: true,
+        title: Text(name),
+        textColor: primaryColor,  
+        collapsedTextColor: primaryColor,
+        childrenPadding: EdgeInsets.only(left: 6),
+        children: children,
       ),
+    );
+  }
+
+  Widget _navTile(String title, Widget page) {
+    return ListTile(
+      title: Text(title),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => page),
+        );
+      },
+      trailing: const Icon(Icons.arrow_forward_ios),
     );
   }
 }
