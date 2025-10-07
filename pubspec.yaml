@@ -35,6 +35,7 @@ dependencies:
   # 不支持鸿蒙flutter
   # flutter_quill: ^11.4.2
   # flutter_quill_extensions: ^11.0.0
+  re_editor: ^0.8.0
 dev_dependencies:
   flutter_lints: ^5.0.0
 

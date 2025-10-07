@@ -5,6 +5,7 @@ import '../nav_or_routes/bottom_nav_page.dart';
 import '../nav_or_routes/routes_nav_page.dart';
 import '../platform_judge/platform_judge_page.dart';
 import '../env_variables/env_variables_page.dart';
+import '../process/process_page.dart';
 // import '../quill/quill_page.dart'; // 不支持鸿蒙flutter
 import '../open_file/open_file_page.dart';
 import '../lottie/lottie_page.dart';
@@ -36,6 +37,7 @@ class _MainPageState extends State<MainPage> {
           ]),
           _category('系统', [
             _navTile('环境变量', const EnvVariablesPage()),
+            _navTile('进程(模拟终端)', const ProcessPage()),
             _navTile('平台判断', const PlatformJudgePage()),
             // if (UniversalPlatform.isOhos)
             //   _navTile('平台视图（鸿蒙）', const PlatformViewPage()),
