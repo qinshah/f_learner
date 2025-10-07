@@ -1,3 +1,7 @@
+# 鸿蒙分支相关
+.fvm/
+ohos/
+
 # Miscellaneous
 *.class
 *.log
