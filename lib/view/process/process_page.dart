@@ -17,22 +17,20 @@ class _ProcessPageState extends State<ProcessPage> {
 
   Future<void> _runCommand() async {
     _outputs.clear();
-    final process = await Process.start(_terminalEnv, ['-c', _inputText]);
-    process.stdout.transform(utf8.decoder).listen((line) {
-      setState(() {
-        _outputs.add(line);
+    try {
+      final process = await Process.start(_terminalEnv, ['-c', _inputText]);
+      process.stdout.transform(utf8.decoder).listen((line) {
+        setState(() => _outputs.add(line));
       });
-    });
-    process.stderr.transform(utf8.decoder).listen((line) {
-      setState(() {
-        _outputs.add(line);
+      process.stderr.transform(utf8.decoder).listen((line) {
+        setState(() => _outputs.add(line));
       });
-    });
-    process.exitCode.then((code) {
-      setState(() {
-        _outputs.add('Exit code: $code');
+      process.exitCode.then((code) {
+        setState(() => _outputs.add('退出码: $code'));
       });
-    });
+    } catch (e) {
+      setState(() => _outputs.add('无法运行，错误信息: $e'));
+    }
   }
 
   @override
@@ -57,12 +55,9 @@ class _ProcessPageState extends State<ProcessPage> {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            itemBuilder: (context, index) {
-              return Text(_outputs[index]);
-            },
-            itemCount: _outputs.length,
+          child: ListView(
+            padding: const EdgeInsets.all(12),
+            children: [SelectableText(_outputs.join('\n'))],
           ),
         ),
       ]),
