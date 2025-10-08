@@ -36,6 +36,7 @@ dependencies:
   # flutter_quill: ^11.4.2
   # flutter_quill_extensions: ^11.0.0
   re_editor: ^0.8.0
+  flutter_staggered_grid_view: ^0.7.0
 dev_dependencies:
   flutter_lints: ^5.0.0
 
@@ -46,3 +47,4 @@ flutter:
     - assets/
     - assets/lottiefiles/
     - assets/img/
+    - images/
