@@ -12,6 +12,7 @@ import '../lottie/lottie_page.dart';
 import '../lens/lens_page.dart';
 import '../flex_layout/flex_layout_page.dart';
 import '../volume_ctrl/volume_ctrl_page.dart';
+import '../waterfall_layout/waterfall_layout_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -28,6 +29,11 @@ class _MainPageState extends State<MainPage> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: [
+          _category('组件/布局研究', [
+            _navTile('瀑布流(图片)', const WaterfallLayoutPage()),
+            _navTile('透镜', const LensPage()),
+            _navTile('Flex研究', const FlexLayoutPage()),
+          ]),
           _category('导航或路由', [
             _navTile('简单底部导航', const BottomNavPage()),
             _navTile('嵌套路由导航', const RoutesNavPage()),
@@ -47,10 +53,6 @@ class _MainPageState extends State<MainPage> {
           _category('实用组件', [
             _navTile('Quill富文本', const QuillPage()),
             _navTile('lottie动画', const LottiePage()),
-          ]),
-          _category('组件/布局研究', [
-            _navTile('透镜', const LensPage()),
-            _navTile('Flex研究', const FlexLayoutPage()),
           ]),
         ],
       ),
