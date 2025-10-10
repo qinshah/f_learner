@@ -13,6 +13,7 @@ import '../lens/lens_page.dart';
 import '../flex_layout/flex_layout_page.dart';
 import '../volume_ctrl/volume_ctrl_page.dart';
 import '../waterfall_layout/waterfall_layout_page.dart';
+import '../bbs/bbs_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -29,6 +30,9 @@ class _MainPageState extends State<MainPage> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: [
+          _category('状态管理研究', [
+            _navTile('通过状态构建', const BbsPage()),
+          ]),
           _category('组件/布局研究', [
             _navTile('瀑布流(图片)', const WaterfallLayoutPage()),
             _navTile('透镜', const LensPage()),
