@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../flame/flame_page.dart';
@@ -6,7 +7,6 @@ import '../nav_or_routes/routes_nav_page.dart';
 import '../platform_judge/platform_judge_page.dart';
 import '../env_variables/env_variables_page.dart';
 import '../process/process_page.dart';
-// import '../quill/quill_page.dart'; // 不支持鸿蒙flutter
 import '../open_file/open_file_page.dart';
 import '../lottie/lottie_page.dart';
 import '../lens/lens_page.dart';
@@ -14,12 +14,29 @@ import '../flex_layout/flex_layout_page.dart';
 import '../volume_ctrl/volume_ctrl_page.dart';
 import '../waterfall_layout/waterfall_layout_page.dart';
 import '../bbs/bbs_page.dart';
+// import 'package:fleather/fleather.dart'; // switch(defaultTargetPlatform)缺少TargetPlatform.ohos
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
-
   @override
   State<MainPage> createState() => _MainPageState();
+
+  final targetPlatformOhosMissError = const Scaffold(
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.error, size: 64, color: Colors.orange),
+          SizedBox(height: 16),
+          Text('此页面插件使用鸿蒙flutter时会有以下错误'),
+          SizedBox(height: 16),
+          Text('switch(defaultTargetPlatform)缺少TargetPlatform.ohos'),
+          SizedBox(height: 16),
+          BackButton(),
+        ],
+      ),
+    ),
+  );
 }
 
 class _MainPageState extends State<MainPage> {
@@ -30,6 +47,10 @@ class _MainPageState extends State<MainPage> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: [
+          _category('富文本编辑器', [
+            _navTile('Quill富文本', widget.targetPlatformOhosMissError),
+            _navTile('Fleather富文本', widget.targetPlatformOhosMissError),
+          ]),
           _category('状态管理研究', [
             _navTile('通过状态构建', const BbsPage()),
           ]),

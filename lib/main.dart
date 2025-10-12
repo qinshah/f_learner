@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-// import 'package:flutter_quill/flutter_quill.dart'; // 不支持鸿蒙flutter
+// import 'package:flutter_quill/flutter_quill.dart'; // switch(defaultTargetPlatform)缺少TargetPlatform.ohos
 
 import 'view/main/main_page.dart';
 

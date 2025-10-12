@@ -32,11 +32,15 @@ dependencies:
   #     url: "https://github.com/qinshah/flutter-universal-platform.git"
   lottie: ^3.3.1 # lottie动画
   flutter_svg: ^2.2.0
-  # 不支持鸿蒙flutter
+  # switch(defaultTargetPlatform)缺少TargetPlatform.ohos
   # flutter_quill: ^11.4.2
   # flutter_quill_extensions: ^11.0.0
   re_editor: ^0.8.0
   flutter_staggered_grid_view: ^0.7.0
+  # switch(defaultTargetPlatform)缺少TargetPlatform.ohos
+  fleather: ^1.26.0
+  image_picker: ^1.2.0
+  url_launcher: ^6.3.2
 dev_dependencies:
   flutter_lints: ^5.0.0
 
