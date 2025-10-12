@@ -6,7 +6,6 @@ import '../nav_or_routes/routes_nav_page.dart';
 import '../platform_judge/platform_judge_page.dart';
 import '../env_variables/env_variables_page.dart';
 import '../process/process_page.dart';
-// import '../quill/quill_page.dart'; // 不支持鸿蒙flutter
 import '../open_file/open_file_page.dart';
 import '../lottie/lottie_page.dart';
 import '../lens/lens_page.dart';
