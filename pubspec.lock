@@ -195,6 +195,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.32.0"
+  fleather:
+    dependency: "direct main"
+    description:
+      name: fleather
+      sha256: baa1cbba5de755adf8114eac3b8adf352f06a18e55d1d58636e9c10a0f86aed5
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.26.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -339,7 +347,7 @@ packages:
     source: hosted
     version: "4.1.2"
   image_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_picker
       sha256: "736eb56a911cf24d1859315ad09ddec0b66104bc41a7f8c5b96b4e2620cf5041"
@@ -563,6 +571,22 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "8.0.0"
+  parchment:
+    dependency: transitive
+    description:
+      name: parchment
+      sha256: a11ddc00d5158ad728c49bc81fcd595dc983012fc3513b0ee8fde906c214bbdb
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.25.1"
+  parchment_delta:
+    dependency: transitive
+    description:
+      name: parchment_delta
+      sha256: "8b360d0138eb591c7fe193670e2d05466e482792af9c5b4d3f568c5c61530f08"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0"
   path:
     dependency: transitive
     description:
@@ -761,7 +785,7 @@ packages:
     source: hosted
     version: "1.1.0"
   url_launcher:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: url_launcher
       sha256: f6a7e5c4835bb4e3026a04793a4199ca2d14c739ec378fdfe23fc8075d0439f8
