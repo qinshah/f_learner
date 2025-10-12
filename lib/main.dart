@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        FlutterQuillLocalizations.delegate,
+        // FlutterQuillLocalizations.delegate, // 不支持鸿蒙flutter
       ],
       supportedLocales: [const Locale('zh', 'CN')],
       home: const MainPage(),

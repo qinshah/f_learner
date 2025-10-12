@@ -26,10 +26,6 @@ dependencies:
     git:
       url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
       path: "packages/file_selector/file_selector"
-  universal_platform: ^1.1.0
-  # universal_platform: # 平台判断
-  #   git:
-  #     url: "https://github.com/qinshah/flutter-universal-platform.git"
   lottie: ^3.3.1 # lottie动画
   flutter_svg: ^2.2.0
   # switch(defaultTargetPlatform)缺少TargetPlatform.ohos

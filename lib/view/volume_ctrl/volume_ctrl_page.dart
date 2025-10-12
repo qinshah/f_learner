@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:universal_platform/universal_platform.dart';
 import 'package:volume_controller/volume_controller.dart';
 
 import '../widget/plugin_info_table.dart';
@@ -52,17 +51,17 @@ class _VolumeCtrlPageState extends State<VolumeCtrlPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('音量控制')),
       body: ListView(children: [
-        PluginInfoTable(
-          name: 'volume_controller',
-          url: 'https://pub-web.flutter-io.cn/packages/volume_controller',
-          platforms: [
-            UniversalPlatformType.Android,
-            UniversalPlatformType.IOS,
-            UniversalPlatformType.Linux,
-            UniversalPlatformType.MacOS,
-            UniversalPlatformType.Windows,
-          ],
-        ),
+        // PluginInfoTable(
+        //   name: 'volume_controller',
+        //   url: 'https://pub-web.flutter-io.cn/packages/volume_controller',
+        //   platforms: [
+        //     UniversalPlatformType.Android,
+        //     UniversalPlatformType.IOS,
+        //     UniversalPlatformType.Linux,
+        //     UniversalPlatformType.MacOS,
+        //     UniversalPlatformType.Windows,
+        //   ],
+        // ),
         Text('当前音量: $_volumeValue'),
         Row(
           children: [

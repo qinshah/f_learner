@@ -71,14 +71,11 @@ class _MainPageState extends State<MainPage> {
           _category('系统', [
             _navTile('环境变量', const EnvVariablesPage()),
             _navTile('进程(模拟终端)', const ProcessPage()),
-            _navTile('平台判断', const PlatformJudgePage()),
-            // if (UniversalPlatform.isOhos)
-            //   _navTile('平台视图（鸿蒙）', const PlatformViewPage()),
+            _navTile('系统和平台判断', const PlatformJudgePage()),
             _navTile('音量控制', const VolumeCtrlPage()),
             _navTile('打开文件', const OpenFilePage()),
           ]),
           _category('实用组件', [
-            // _navTile('Quill富文本', const QuillPage()), //不支持鸿蒙flutter
             _navTile('lottie动画', const LottiePage()),
           ]),
         ],
