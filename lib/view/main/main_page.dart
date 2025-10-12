@@ -11,7 +11,8 @@ import '../open_file/open_file_page.dart';
 import '../lottie/lottie_page.dart';
 import '../lens/lens_page.dart';
 import '../flex_layout/flex_layout_page.dart';
-import '../quill/quill_page.dart';
+import '../rich_text/fleather_page.dart';
+import '../rich_text/quill_page.dart';
 import '../volume_ctrl/volume_ctrl_page.dart';
 import '../waterfall_layout/waterfall_layout_page.dart';
 import '../bbs/bbs_page.dart';
@@ -31,8 +32,9 @@ class _MainPageState extends State<MainPage> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: [
-          _category('富文本', [
+          _category('富文本编辑器', [
             _navTile('Quill富文本', const QuillPage()),
+            _navTile('Fleather富文本', const FleatherPage()),
           ]),
           _category('状态管理研究', [
             _navTile('通过状态构建', const BbsPage()),
