@@ -1,7 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../flame/flame_page.dart';
+import '../interactive_viewer_builder/word_layout_page.dart';
+import '../layout/flex_page.dart';
+import '../interactive_viewer_builder/interactive_viewer_builder.dart';
+import '../layout/flex_layout_page.dart';
 import '../nav_or_routes/bottom_nav_page.dart';
 import '../nav_or_routes/routes_nav_page.dart';
 import '../platform_judge/platform_judge_page.dart';
@@ -10,9 +13,7 @@ import '../process/process_page.dart';
 import '../open_file/open_file_page.dart';
 import '../lottie/lottie_page.dart';
 import '../lens/lens_page.dart';
-import '../flex_layout/flex_layout_page.dart';
-import '../rich_text/fleather_page.dart';
-import '../rich_text/quill_page.dart';
+import '../rich_text/appflowy/appflowy_page.dart';
 import '../volume_ctrl/volume_ctrl_page.dart';
 import '../waterfall_layout/waterfall_layout_page.dart';
 import '../bbs/bbs_page.dart';
@@ -49,17 +50,31 @@ class _MainPageState extends State<MainPage> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: [
+          _category('Word布局研究', [
+            _navTile('Word布局尝试', const WordLayoutPage()),
+            _navTile(
+                'InteractiveViewer.builder', const InteractiveViewerBuilder()),
+          ]),
           _category('富文本编辑器', [
+            _navTile('appflowy', const AppflowyPage()),
+            _navTile(
+              'got_markdown',
+              widget
+                  .targetPlatformOhosMissError, // 依赖的flutter_math缺少TargetPlatform.ohos判断
+            ),
             _navTile('Quill富文本', widget.targetPlatformOhosMissError),
             _navTile('Fleather富文本', widget.targetPlatformOhosMissError),
           ]),
           _category('状态管理研究', [
             _navTile('通过状态构建', const BbsPage()),
           ]),
-          _category('组件/布局研究', [
-            _navTile('瀑布流(图片)', const WaterfallLayoutPage()),
-            _navTile('透镜', const LensPage()),
+          _category('布局研究', [
             _navTile('Flex研究', const FlexLayoutPage()),
+            _navTile('Flex布局', const FlexPage()),
+            _navTile('透镜', const LensPage()),
+          ]),
+          _category('布局组件', [
+            _navTile('瀑布流(图片)', const WaterfallLayoutPage()),
           ]),
           _category('导航或路由', [
             _navTile('简单底部导航', const BottomNavPage()),
