@@ -13,6 +13,8 @@ import '../process/process_page.dart';
 import '../open_file/open_file_page.dart';
 import '../lottie/lottie_page.dart';
 import '../lens/lens_page.dart';
+import '../rich_text/appflowy/appflowy_page.dart';
+import '../rich_text/gpt_md_page.dart';
 import '../rich_text/fleather_page.dart';
 import '../rich_text/quill_page.dart';
 import '../volume_ctrl/volume_ctrl_page.dart';
@@ -40,6 +42,8 @@ class _MainPageState extends State<MainPage> {
                 'InteractiveViewer.builder', const InteractiveViewerBuilder()),
           ]),
           _category('富文本编辑器', [
+            _navTile('appflowy', const AppflowyPage()),
+            _navTile('got_markdown', const GptMdPage()),
             _navTile('Quill富文本', const QuillPage()),
             _navTile('Fleather富文本', const FleatherPage()),
           ]),

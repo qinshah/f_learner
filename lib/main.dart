@@ -1,3 +1,4 @@
+import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_quill/flutter_quill.dart';
@@ -27,8 +28,10 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         FlutterQuillLocalizations.delegate,
+        AppFlowyEditorLocalizations.delegate,
       ],
-      supportedLocales: [const Locale('zh', 'CN')],
+      // 含中文
+      supportedLocales: AppFlowyEditorLocalizations.delegate.supportedLocales,
       home: const MainPage(),
     );
   }
