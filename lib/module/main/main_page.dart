@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../module.function/state_management/vsvl_page.dart';
 import '../flame/flame_page.dart';
 import '../interactive_viewer_builder/word_layout_page.dart';
 import '../layout/flex_page.dart';
@@ -36,6 +37,10 @@ class _MainPageState extends State<MainPage> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: [
+          _category('状态管理研究', [
+            _navTile('vsvl状态管理', const VsvlPage()),
+            _navTile('通过状态构建', const BbsPage()),
+          ]),
           _category('Word布局研究', [
             _navTile('Word布局尝试', const WordLayoutPage()),
             _navTile(
@@ -46,10 +51,6 @@ class _MainPageState extends State<MainPage> {
             _navTile('got_markdown', const GptMdPage()),
             _navTile('Quill富文本', const QuillPage()),
             _navTile('Fleather富文本', const FleatherPage()),
-          ]),
-          _category('状态管理研究', [
-            _navTile('通过状态构建', const BbsPage()),
-            _navTile('自己的小状态管理框架', const BbsPage()),
           ]),
           _category('布局研究', [
             _navTile('Flex研究', const FlexLayoutPage()),
