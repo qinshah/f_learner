@@ -49,6 +49,7 @@ class _MainPageState extends State<MainPage> {
           ]),
           _category('状态管理研究', [
             _navTile('通过状态构建', const BbsPage()),
+            _navTile('自己的小状态管理框架', const BbsPage()),
           ]),
           _category('布局研究', [
             _navTile('Flex研究', const FlexLayoutPage()),

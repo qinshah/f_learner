@@ -23,9 +23,6 @@ class _AppflowyPageState extends State<AppflowyPage> {
       appBar: AppBar(title: Text('Appflowy编辑器')),
       body: _Editor(
         jsonString: _jsonString,
-        onEditorStateChange: (editorState) {
-          print('EditorStateChange: ${editorState.document}');
-        },
         textDirection: TextDirection.ltr,
       ),
     );
@@ -35,12 +32,10 @@ class _AppflowyPageState extends State<AppflowyPage> {
 class _Editor extends StatefulWidget {
   const _Editor({
     required this.jsonString,
-    required this.onEditorStateChange,
     this.textDirection = TextDirection.ltr,
   });
 
   final String jsonString;
-  final void Function(EditorState editorState) onEditorStateChange;
 
   final TextDirection textDirection;
 
@@ -116,14 +111,6 @@ class _EditorState extends State<_Editor> {
                 editorState.logConfiguration
                   ..handler = debugPrint
                   ..level = AppFlowyEditorLogLevel.all;
-
-                editorState.transactionStream.listen((event) {
-                  if (event.$1 == TransactionTime.after) {
-                    widget.onEditorStateChange(editorState);
-                  }
-                });
-
-                widget.onEditorStateChange(editorState);
 
                 _editorState = editorState;
                 registerWordCounter();
