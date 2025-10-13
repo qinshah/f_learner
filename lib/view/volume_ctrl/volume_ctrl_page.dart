@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:volume_controller/volume_controller.dart';
 
-import '../widget/plugin_info_table.dart';
+// import '../widget/plugin_info_table.dart';
 
 class VolumeCtrlPage extends StatefulWidget {
   const VolumeCtrlPage({super.key});
