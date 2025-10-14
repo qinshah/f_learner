@@ -13,10 +13,10 @@ class RootView extends StatelessWidget {
   const RootView({super.key});
 
   final _pages = const [
+    PageModel('未分类', Icons.apps, OthersPageView()),
     PageModel('示例', Icons.code_rounded, DemosPageView()),
     PageModel('第三方包', Icons.category_outlined, PackagesPageView()),
     PageModel('框架API', Icons.extension, ApiPageView()),
-    PageModel('未分类', Icons.apps, OthersPageView())
   ];
 
   @override
