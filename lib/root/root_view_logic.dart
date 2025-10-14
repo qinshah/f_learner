@@ -1,18 +1,22 @@
 import 'package:f_learner/root/root_view_state.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/animation.dart';
 
-class RootViewLogic extends ChangeNotifier {
+import '../function/state_management.dart';
+
+class RootViewLogic extends LogicNotifier {
   RootViewState viewState = RootViewState();
 
-  int pageIndex = 0;
-
   void changePage(int value) {
-    pageIndex = value;
+    viewState.pageIndex = value;
     notifyListeners();
     viewState.pageViewCntlr.animateToPage(
       value,
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+  }
+  
+  @override
+  void rememberDispose() {
   }
 }

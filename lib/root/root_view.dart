@@ -21,7 +21,7 @@ class RootView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider<RootViewLogic>(
+    return ChangeNotifierProvider<RootViewLogic>(
       create: (_) => RootViewLogic(),
       child: OrientationBuilder(builder: (context, orientation) {
         final vertical = orientation == Orientation.portrait;
@@ -31,46 +31,45 @@ class RootView extends StatelessWidget {
   }
 
   Widget _buildVertical(BuildContext context) {
-    return Consumer<RootViewLogic>(builder: (context, logic, child) {
-      final state = logic.viewState;
-      return Scaffold(
-        body: _buildPage(state, Axis.horizontal),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: logic.pageIndex,
-          onTap: logic.changePage,
-          items: _pages.map((e) {
-            return BottomNavigationBarItem(
-              icon: Icon(e.iconData),
-              label: e.name,
-            );
-          }).toList(),
-        ),
-      );
-    });
+    final logic = context.watch<RootViewLogic>();
+    final state = logic.viewState;
+    return Scaffold(
+      body: _buildPage(state, Axis.horizontal),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: state.pageIndex,
+        onTap: logic.changePage,
+        items: _pages.map((e) {
+          return BottomNavigationBarItem(
+            icon: Icon(e.iconData),
+            label: e.name,
+          );
+        }).toList(),
+      ),
+    );
   }
 
   Widget _buildHorizontal(BuildContext context) {
-    return Consumer<RootViewLogic>(builder: (context, logic, child) {
-      final state = logic.viewState;
-      return Material(
-        child: Row(
-          children: [
-            NavigationRail(
-              selectedIndex: logic.pageIndex,
-              labelType: NavigationRailLabelType.all,
-              onDestinationSelected: logic.changePage,
-              destinations: _pages.map((item) {
-                return NavigationRailDestination(
-                  icon: Icon(item.iconData),
-                  label: Text(item.name),
-                );
-              }).toList(),
-            ),
-            Expanded(child: _buildPage(state, Axis.vertical)),
-          ],
-        ),
-      );
-    });
+    final logic = context.watch<RootViewLogic>();
+    final state = logic.viewState;
+    return Material(
+      child: Row(
+        children: [
+          NavigationRail(
+            selectedIndex: state.pageIndex,
+            labelType: NavigationRailLabelType.all,
+            onDestinationSelected: logic.changePage,
+            destinations: _pages.map((item) {
+              return NavigationRailDestination(
+                icon: Icon(item.iconData),
+                label: Text(item.name),
+              );
+            }).toList(),
+          ),
+          Expanded(child: _buildPage(state, Axis.vertical)),
+        ],
+      ),
+    );
   }
 
   Widget _buildPage(RootViewState state, Axis direction) {
