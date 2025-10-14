@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../module.function/state_management/vsvl_page.dart';
+import '../../module.demo/state_management/vsvl/vsvl_page.dart';
 import '../flame/flame_page.dart';
 import '../interactive_viewer_builder/word_layout_page.dart';
 import '../layout/flex_page.dart';
@@ -22,14 +22,14 @@ import '../volume_ctrl/volume_ctrl_page.dart';
 import '../waterfall_layout/waterfall_layout_page.dart';
 import '../bbs/bbs_page.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class MainView extends StatefulWidget {
+  const MainView({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<MainView> createState() => _MainViewState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,10 +2,12 @@ import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:provider/provider.dart';
 
-import 'module/main/main_page.dart';
+import 'root/root_view.dart';
 
 void main() {
+  Provider.debugCheckInvalidValueType = null;
   runApp(const MyApp());
 }
 
@@ -14,14 +16,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primarySwatch = Colors.teal;
     return MaterialApp(
-      title: 'FLearner',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        scaffoldBackgroundColor: Colors.grey.shade100,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: primarySwatch),
       ),
       darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        colorScheme: ColorScheme.dark(primary: Colors.teal),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: primarySwatch,
+          brightness: Brightness.dark,
+        ),
       ),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -32,7 +37,7 @@ class MyApp extends StatelessWidget {
       ],
       // 含中文
       supportedLocales: AppFlowyEditorLocalizations.delegate.supportedLocales,
-      home: const MainPage(),
+      home: const RootView(),
     );
   }
 }
