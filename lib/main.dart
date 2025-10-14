@@ -3,25 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:flutter_quill/flutter_quill.dart'; // switch(defaultTargetPlatform)缺少TargetPlatform.ohos
 
-import 'view/main/main_page.dart';
+import 'root/root_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final primarySwatch = Colors.teal;
     return MaterialApp(
-      title: 'FLearner',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        scaffoldBackgroundColor: Colors.grey.shade100,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: primarySwatch),
       ),
       darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        colorScheme: ColorScheme.dark(primary: Colors.teal),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: primarySwatch,
+          brightness: Brightness.dark,
+        ),
       ),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
       ],
       // 含中文
       supportedLocales: AppFlowyEditorLocalizations.delegate.supportedLocales,
-      home: const MainPage(),
+      home: const RootView(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/page_model.dart';
+import '../../data_model/page_model.dart';
 
 class BottomNavPage extends StatefulWidget {
   const BottomNavPage({super.key});
@@ -10,20 +10,20 @@ class BottomNavPage extends StatefulWidget {
 }
 
 class _BottomNavPageState extends State<BottomNavPage> {
-  late final List<PageModel> _pages = [
-    PageModel(
+  late final List<PageModel2> _pages = [
+    PageModel2(
         '首页',
         PageBuilder(
           key: Key('首页'),
         ),
         const Icon(Icons.home)),
-    PageModel(
+    PageModel2(
         '搜索',
         PageBuilder(
           key: Key('搜索'),
         ),
         const Icon(Icons.search)),
-    PageModel(
+    PageModel2(
         '我的',
         PageBuilder(
           key: Key('我的'),
@@ -56,7 +56,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
         items: _pages
             .map((e) => BottomNavigationBarItem(
                   icon: e.icon,
-                  label: e.title,
+                  label: e.name,
                 ))
             .toList(),
         onTap: _changePage,
