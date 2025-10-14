@@ -34,6 +34,7 @@ class RootView extends StatelessWidget {
     final logic = context.watch<RootViewLogic>();
     final state = logic.viewState;
     return Scaffold(
+      appBar: AppBar(toolbarHeight: 0),
       body: _buildPage(state, Axis.horizontal),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
