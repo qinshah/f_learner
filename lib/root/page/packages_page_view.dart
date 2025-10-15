@@ -2,6 +2,7 @@ import 'package:f_learner/data_model/page_model.dart';
 import 'package:f_learner/module.old/flame/flame_page.dart';
 import 'package:f_learner/module.old/lottie/lottie_page.dart';
 import 'package:f_learner/module.old/open_file/open_file_page.dart';
+import 'package:f_learner/module.old/rich_text/appflowy/appflowy_page.dart';
 import 'package:f_learner/module.old/volume_ctrl/volume_ctrl_page.dart';
 import 'package:f_learner/module.old/waterfall_layout/waterfall_layout_page.dart';
 import 'package:f_learner/root/category_widget.dart';
@@ -10,11 +11,33 @@ import 'package:flutter/material.dart';
 class PackagesPageView extends StatelessWidget {
   const PackagesPageView({super.key});
 
+  final targetPlatformOhosMissError = const Scaffold(
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.error, size: 64, color: Colors.orange),
+          SizedBox(height: 16),
+          Text('此页面插件使用鸿蒙flutter会出错'),
+          SizedBox(height: 16),
+          BackButton(),
+        ],
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(8),
       children: [
+        CategoryWidget(name: '富文本编辑器', pages: [
+          PageModel3('appflowy', const AppflowyPage()),
+          // switch(defaultTargetPlatform)缺少TargetPlatform.ohos
+          PageModel3('got_markdown', targetPlatformOhosMissError),
+          PageModel3('Quill富文本', targetPlatformOhosMissError),
+          PageModel3('Fleather富文本', targetPlatformOhosMissError),
+        ]),
         CategoryWidget(name: '布局组件', pages: [
           PageModel3('瀑布流(图片)', const WaterfallLayoutPage()),
         ]),
