@@ -51,6 +51,7 @@ class OthersPageView extends StatelessWidget {
           PageModel3(
               'InteractiveViewer.builder', const InteractiveViewerBuilder()),
         ]),
+        // TODO 移到第三方库
         CategoryWidget(name: '富文本编辑器', pages: [
           PageModel3('appflowy', const AppflowyPage()),
           // switch(defaultTargetPlatform)缺少TargetPlatform.ohos
@@ -62,26 +63,6 @@ class OthersPageView extends StatelessWidget {
           PageModel3('Flex研究', const FlexLayoutPage()),
           PageModel3('Flex布局', const FlexPage()),
           PageModel3('透镜', const LensPage()),
-        ]),
-        CategoryWidget(name: '布局组件', pages: [
-          PageModel3('瀑布流(图片)', const WaterfallLayoutPage()),
-        ]),
-        CategoryWidget(name: '导航或路由', pages: [
-          PageModel3('简单底部导航', const BottomNavPage()),
-          PageModel3('嵌套路由导航', const RoutesNavPage()),
-        ]),
-        CategoryWidget(name: 'Flame游戏引擎', pages: [
-          PageModel3('入门', const FlamePage()),
-        ]),
-        CategoryWidget(name: '系统', pages: [
-          PageModel3('环境变量', const EnvVariablesPage()),
-          PageModel3('进程(模拟终端)', const ProcessPage()),
-          PageModel3('系统和平台判断', const PlatformJudgePage()),
-          PageModel3('音量控制', const VolumeCtrlPage()),
-          PageModel3('打开文件', const OpenFilePage()),
-        ]),
-        CategoryWidget(name: '实用组件', pages: [
-          PageModel3('lottie动画', const LottiePage()),
         ]),
       ],
     );

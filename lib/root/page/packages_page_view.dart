@@ -1,3 +1,10 @@
+import 'package:f_learner/data_model/page_model.dart';
+import 'package:f_learner/module.old/flame/flame_page.dart';
+import 'package:f_learner/module.old/lottie/lottie_page.dart';
+import 'package:f_learner/module.old/open_file/open_file_page.dart';
+import 'package:f_learner/module.old/volume_ctrl/volume_ctrl_page.dart';
+import 'package:f_learner/module.old/waterfall_layout/waterfall_layout_page.dart';
+import 'package:f_learner/root/category_widget.dart';
 import 'package:flutter/material.dart';
 
 class PackagesPageView extends StatelessWidget {
@@ -5,6 +12,23 @@ class PackagesPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ListView(
+      padding: const EdgeInsets.all(8),
+      children: [
+        CategoryWidget(name: '布局组件', pages: [
+          PageModel3('瀑布流(图片)', const WaterfallLayoutPage()),
+        ]),
+        CategoryWidget(name: '游戏开发', pages: [
+          PageModel3('Flame框架', const FlamePage()),
+        ]),
+        CategoryWidget(name: '动画组件', pages: [
+          PageModel3('lottie动画', const LottiePage()),
+        ]),
+        CategoryWidget(name: '系统功能', pages: [
+          PageModel3('音量控制', const VolumeCtrlPage()),
+          PageModel3('打开文件', const OpenFilePage()),
+        ]),
+      ],
+    );
   }
 }
