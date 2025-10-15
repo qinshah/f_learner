@@ -1,22 +1,22 @@
 import 'package:f_learner/data_model/page_model.dart';
 import 'package:f_learner/root/root_view_logic.dart';
-import 'package:f_learner/root_pages/api_page_view.dart';
-import 'package:f_learner/root_pages/others_page_view.dart';
-import 'package:f_learner/root_pages/packages_page_view.dart';
+import 'package:f_learner/root/page/api_page_view.dart';
+import 'package:f_learner/root/page/others_page_view.dart';
+import 'package:f_learner/root/page/packages_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../root_pages/demos_page_view.dart';
+import 'page/demos_page_view.dart';
 import 'root_view_state.dart';
 
 class RootView extends StatelessWidget {
   const RootView({super.key});
 
   final _pages = const [
-    PageModel('未分类', Icons.apps, OthersPageView()),
+    PageModel('未分类', Icons.category_outlined, OthersPageView()),
     PageModel('示例', Icons.code_rounded, DemosPageView()),
-    PageModel('第三方包', Icons.category_outlined, PackagesPageView()),
-    PageModel('框架API', Icons.extension, ApiPageView()),
+    PageModel('第三方库', Icons.apps, PackagesPageView()),
+    PageModel('框架API', Icons.flutter_dash, ApiPageView()),
   ];
 
   @override

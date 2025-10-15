@@ -4,16 +4,22 @@ class PageModel2 {
   final String name;
   final Widget icon;
   final Widget page;
- const PageModel2(this.name, this.page, this.icon);
+  const PageModel2(this.name, this.page, this.icon);
 }
 
 class PageModel {
   final String name;
   final IconData iconData;
   final Widget view;
- const PageModel(
+  const PageModel(
     this.name,
     this.iconData,
     this.view,
   );
+}
+
+class PageModel3 {
+  final String name;
+  final Widget view;
+  const PageModel3(this.name, this.view);
 }
