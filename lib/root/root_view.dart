@@ -12,12 +12,12 @@ import 'root_view_state.dart';
 class RootView extends StatelessWidget {
   const RootView({super.key});
 
-  final _pages = const [
+  final _pages = const {
     PageModel('未分类', Icons.category_outlined, OthersPageView()),
     PageModel('示例', Icons.code_rounded, DemosPageView()),
     PageModel('第三方库', Icons.apps, PackagesPageView()),
     PageModel('框架API', Icons.flutter_dash, ApiPageView()),
-  ];
+  };
 
   @override
   Widget build(BuildContext context) {

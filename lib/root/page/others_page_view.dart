@@ -14,6 +14,7 @@ import 'package:f_learner/module.old/process/process_page.dart';
 import 'package:f_learner/module.old/rich_text/appflowy/appflowy_page.dart';
 import 'package:f_learner/module.old/volume_ctrl/volume_ctrl_page.dart';
 import 'package:f_learner/module.old/waterfall_layout/waterfall_layout_page.dart';
+import 'package:f_learner/module.old/sf_view/sf_view_page_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../data_model/page_model.dart';
@@ -42,6 +43,9 @@ class OthersPageView extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(8),
       children: [
+        CategoryWidget(name: '我的测试', pages: [
+          PageModel3('StatefulView', const SfViewPageView()),
+        ]),
         CategoryWidget(name: 'Word布局研究', pages: [
           PageModel3('Word布局尝试', const WordLayoutPage()),
           PageModel3(
