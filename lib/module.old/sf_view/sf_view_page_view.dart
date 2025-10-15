@@ -31,6 +31,9 @@ class _Logic extends SfViewLogic<S> {
     state.count++;
     notifyListeners();
   }
+
+  @override
+  void rememberDispose() {}
 }
 
 class S extends SfViewState {

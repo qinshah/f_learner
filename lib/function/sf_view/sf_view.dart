@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,4 +24,14 @@ abstract class SfViewLogic<S extends SfViewState> extends ChangeNotifier {
   S state;
 
   SfViewLogic(this.state);
+
+  @nonVirtual
+  @override
+  void dispose() {
+    super.dispose();
+    rememberDispose();
+  }
+
+  /// 在这里dispose，目的是为了提醒不要忘记dispose
+  void rememberDispose();
 }
