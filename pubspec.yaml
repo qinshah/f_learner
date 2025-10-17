@@ -41,6 +41,15 @@ dependencies:
   # gpt_markdown: ^1.1.2 # 依赖的flutter_math缺少TargetPlatform.ohos判断
   appflowy_editor: ^6.1.0
   provider: ^6.1.5+1
+  universal_html: ^2.2.4
+  markdown: ^7.3.0
+  google_fonts: ^6.3.2
+  file_picker: ^10.3.3
+  path_provider: ^2.1.5
+  printing: ^5.14.2
+
+dependency_overrides:
+
 dev_dependencies:
   flutter_lints: ^5.0.0
 
@@ -52,3 +61,4 @@ flutter:
     - assets/lottiefiles/
     - assets/img/
     - images/
+    - assets/images/

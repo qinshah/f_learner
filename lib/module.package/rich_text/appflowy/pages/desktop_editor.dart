@@ -1,8 +1,8 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
+import 'package:f_learner/module.package/rich_text/appflowy/pages/drag_to_reorder_editor.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import 'drag_to_reorder_editor.dart';
 
 class DesktopEditor extends StatefulWidget {
   const DesktopEditor({
@@ -97,6 +97,14 @@ class _DesktopEditorState extends State<DesktopEditor> {
           dropTargetStyle: const AppFlowyDropTargetStyle(
             color: Colors.red,
           ),
+          header: Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: Image.asset(
+              'assets/images/header.png',
+              fit: BoxFit.fitWidth,
+              height: 150,
+            ),
+          ),
           footer: _buildFooter(),
         ),
       ),
@@ -110,12 +118,12 @@ class _DesktopEditorState extends State<DesktopEditor> {
       cursorColor: Colors.blue,
       selectionColor: Colors.grey.shade300,
       textStyleConfiguration: TextStyleConfiguration(
-        text: TextStyle(
+        text: GoogleFonts.poppins(
           fontSize: 16,
           color: Colors.black,
         ),
-        // code: TextStyle(), // TODO: code字体
-        bold: TextStyle(
+        code: GoogleFonts.architectsDaughter(),
+        bold: GoogleFonts.poppins(
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -207,7 +215,7 @@ class _DesktopEditorState extends State<DesktopEditor> {
       14.0,
     ];
     map[HeadingBlockKeys.type] = HeadingBlockComponentBuilder(
-      textStyleBuilder: (level) => TextStyle(
+      textStyleBuilder: (level) => GoogleFonts.poppins(
         fontSize: levelToFontSize.elementAtOrNull(level - 1) ?? 14.0,
         fontWeight: FontWeight.w600,
       ),
