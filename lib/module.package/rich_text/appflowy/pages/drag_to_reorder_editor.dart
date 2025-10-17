@@ -1,5 +1,6 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 enum HorizontalPosition { left, center, right }
@@ -98,12 +99,14 @@ class _DragToReorderEditorState extends State<DragToReorderEditor> {
       cursorColor: Colors.black,
       selectionColor: Colors.grey.shade300,
       textStyleConfiguration: TextStyleConfiguration(
-        text: TextStyle(
+        text: GoogleFonts.poppins(
           fontSize: 16,
           color: Colors.black,
         ),
-        // code: TextStyle(), // TODO: code字体
-        bold: TextStyle(fontWeight: FontWeight.w500),
+        code: GoogleFonts.architectsDaughter(),
+        bold: GoogleFonts.poppins(
+          fontWeight: FontWeight.w500,
+        ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 200.0),
     );

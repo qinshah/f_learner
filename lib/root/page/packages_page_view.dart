@@ -2,12 +2,12 @@ import 'package:f_learner/data_model/page_model.dart';
 import 'package:f_learner/module.old/flame/flame_page.dart';
 import 'package:f_learner/module.old/lottie/lottie_page.dart';
 import 'package:f_learner/module.old/open_file/open_file_page.dart';
-import 'package:f_learner/module.old/rich_text/appflowy/appflowy_page.dart';
-import 'package:f_learner/module.old/rich_text/fleather_page.dart';
-import 'package:f_learner/module.old/rich_text/gpt_md_page.dart';
-import 'package:f_learner/module.old/rich_text/quill_page.dart';
+import 'package:f_learner/module.package/rich_text/fleather_page.dart';
+import 'package:f_learner/module.package/rich_text/gpt_md_page.dart';
+import 'package:f_learner/module.package/rich_text/quill_page.dart';
 import 'package:f_learner/module.old/volume_ctrl/volume_ctrl_page.dart';
 import 'package:f_learner/module.old/waterfall_layout/waterfall_layout_page.dart';
+import 'package:f_learner/module.package/rich_text/appflowy/appflowy_page.dart';
 import 'package:f_learner/root/category_widget.dart';
 import 'package:flutter/material.dart';
 
