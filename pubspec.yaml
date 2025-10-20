@@ -33,8 +33,8 @@ dependencies:
   re_editor: ^0.8.0
   flutter_staggered_grid_view: ^0.7.0
   fleather: ^1.26.0
-  image_picker: ^1.2.0
-  url_launcher: ^6.3.2
+  image_picker: # 图片选择.鸿蒙
+  url_launcher: # 打开链接.鸿蒙
   vector_math: ^2.2.0
   gpt_markdown: ^1.1.4
   appflowy_editor: ^6.1.0
@@ -43,10 +43,27 @@ dependencies:
   markdown: ^7.3.0
   google_fonts: ^6.3.2
   file_picker: ^10.3.3
-  path_provider: ^2.1.5
+  # file_picker_ohos: # 文件选择.鸿蒙
+  #   git:
+  #     url: https://gitcode.com/openharmony-sig/fluttertpc_file_picker.git
+  #     path: ohos
+  path_provider: ^2.1.5 # 应用可用路径.鸿蒙
   printing: ^5.14.2
 
 dependency_overrides:
+  image_picker: # 图片选择.鸿蒙
+    git:
+      url: https://gitcode.com/openharmony-tpc/flutter_packages.git
+      path: packages/image_picker/image_picker
+  url_launcher: # 打开链接.鸿蒙
+    git:
+      url: https://gitcode.com/openharmony-tpc/flutter_packages.git
+      path: packages/url_launcher/url_launcher
+      ref: br_url_launcher_v6.3.1_ohos
+  path_provider: # 应用路径提供.鸿蒙移植版
+    git:
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+      path: "packages/path_provider/path_provider"
 
 dev_dependencies:
   flutter_lints: ^5.0.0
