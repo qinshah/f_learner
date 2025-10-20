@@ -64,7 +64,7 @@ class _AppflowyPageState extends State<AppflowyPage> {
   void initState() {
     super.initState();
 
-    _jsonString = FinalValue.runInAndroidIos
+    _jsonString = FinalValue.runInMobile
         ? rootBundle.loadString('assets/mobile_example.json')
         : rootBundle.loadString('assets/example.json');
 
@@ -95,7 +95,7 @@ class _AppflowyPageState extends State<AppflowyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      extendBodyBehindAppBar: !FinalValue.runInAndroidIos,
+      extendBodyBehindAppBar: !FinalValue.runInMobile,
       drawer: _buildDrawer(context),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 134, 46, 247),
@@ -128,7 +128,7 @@ class _AppflowyPageState extends State<AppflowyPage> {
           // AppFlowy Editor Demo
           _buildSeparator(context, 'AppFlowy Editor Demo'),
           _buildListTile(context, 'With Example.json', () {
-            final jsonString = !FinalValue.runInAndroidIos
+            final jsonString = !FinalValue.runInMobile
                 ? rootBundle.loadString('assets/example.json')
                 : rootBundle.loadString('assets/mobile_example.json');
             _loadEditor(context, jsonString);
@@ -398,7 +398,7 @@ class _AppflowyPageState extends State<AppflowyPage> {
       )
         ..setAttribute('download', 'document.${fileType.extension}')
         ..click();
-    } else if (FinalValue.runInAndroidIos) {
+    } else if (FinalValue.runInMobile) {
       final appStorageDirectory = await getApplicationDocumentsDirectory();
 
       final path = File(

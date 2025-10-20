@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:appflowy_editor/appflowy_editor.dart';
+import 'package:f_learner/data/final_value.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 class CustomizeThemeForEditor extends StatefulWidget {
   const CustomizeThemeForEditor({super.key});
@@ -22,7 +22,7 @@ class _CustomizeThemeForEditorState extends State<CustomizeThemeForEditor> {
   void initState() {
     super.initState();
 
-    final jsonString = UniversalPlatform.isDesktopOrWeb
+    final jsonString = !FinalValue.runInMobile
         ? rootBundle.loadString('assets/example.json')
         : rootBundle.loadString('assets/mobile_example.json');
     editorState = jsonString.then((value) {
@@ -153,8 +153,8 @@ class _CustomizeThemeForEditorState extends State<CustomizeThemeForEditor> {
   /// custom the text style
   EditorStyle customizeEditorStyle() {
     return EditorStyle(
-      padding: UniversalPlatform.isDesktopOrWeb
-          ? const EdgeInsets.only(left: 200, right: 200)
+      padding: !FinalValue.runInMobile
+          ? const EdgeInsets.symmetric(horizontal: 200)
           : const EdgeInsets.symmetric(horizontal: 20),
       cursorColor: Colors.green,
       dragHandleColor: Colors.green,

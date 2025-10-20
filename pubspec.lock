@@ -306,8 +306,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
-=======
   google_fonts:
     dependency: "direct main"
     description:
@@ -316,15 +314,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "6.3.2"
-  gpt_markdown:
-    dependency: "direct main"
-    description:
-      name: gpt_markdown
-      sha256: "8174983f2ed7d8576d25810913e3afe3f8ffdaa3172c0c823b7cfc289b67f380"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.1.4"
->>>>>>> main
   html:
     dependency: transitive
     description:
@@ -360,11 +349,12 @@ packages:
   image_picker:
     dependency: "direct main"
     description:
-      name: image_picker
-      sha256: "736eb56a911cf24d1859315ad09ddec0b66104bc41a7f8c5b96b4e2620cf5041"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.2.0"
+      path: "packages/image_picker/image_picker"
+      ref: HEAD
+      resolved-ref: aa8bd278b88bd13ade0d4d95e802b8a29865d028
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+    source: git
+    version: "1.0.2"
   image_picker_android:
     dependency: transitive
     description:
@@ -405,6 +395,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.2"
+  image_picker_ohos:
+    dependency: transitive
+    description:
+      path: "packages/image_picker/image_picker_ohos"
+      ref: HEAD
+      resolved-ref: aa8bd278b88bd13ade0d4d95e802b8a29865d028
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+    source: git
+    version: "0.8.7+4"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -657,19 +656,20 @@ packages:
   path_provider:
     dependency: "direct main"
     description:
-      name: path_provider
-      sha256: "50c5dd5b6e1aaf6fb3a78b33f6aa3afca52bf903a8a5298f53101fdaee55bbcd"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.1.5"
+      path: "packages/path_provider/path_provider"
+      ref: HEAD
+      resolved-ref: aa8bd278b88bd13ade0d4d95e802b8a29865d028
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+    source: git
+    version: "2.1.0"
   path_provider_android:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: e122c5ea805bb6773bb12ce667611265980940145be920cd09a4b0ec0285cb16
+      sha256: "3b4c1fc3aa55ddc9cd4aa6759984330d5c8e66aa7702a6223c61540dc6380c37"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.20"
+    version: "2.2.19"
   path_provider_foundation:
     dependency: transitive
     description:
@@ -685,6 +685,15 @@ packages:
       sha256: f7a1fe3a634fe7734c8d3f2766ad746ae2a2884abe22e241a8b301bf5cac3279
       url: "https://pub.flutter-io.cn"
     source: hosted
+    version: "2.2.1"
+  path_provider_ohos:
+    dependency: transitive
+    description:
+      path: "packages/path_provider/path_provider_ohos"
+      ref: HEAD
+      resolved-ref: aa8bd278b88bd13ade0d4d95e802b8a29865d028
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+    source: git
     version: "2.2.1"
   path_provider_platform_interface:
     dependency: transitive
@@ -726,16 +735,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "7.0.1"
-<<<<<<< HEAD
-=======
-  photo_view:
-    dependency: transitive
-    description:
-      name: photo_view
-      sha256: "1fc3d970a91295fbd1364296575f854c9863f225505c28c46e0a03e48960c75e"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.15.0"
   platform:
     dependency: transitive
     description:
@@ -744,7 +743,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.6"
->>>>>>> main
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -913,11 +911,12 @@ packages:
   url_launcher:
     dependency: "direct main"
     description:
-      name: url_launcher
-      sha256: f6a7e5c4835bb4e3026a04793a4199ca2d14c739ec378fdfe23fc8075d0439f8
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "6.3.2"
+      path: "packages/url_launcher/url_launcher"
+      ref: "br_url_launcher_v6.3.1_ohos"
+      resolved-ref: "34dd2b4ce6a6a9fe5f298d75f8a007b0de0789d2"
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+    source: git
+    version: "6.1.12"
   url_launcher_android:
     dependency: transitive
     description:
@@ -950,6 +949,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.2.3"
+  url_launcher_ohos:
+    dependency: transitive
+    description:
+      path: "packages/url_launcher/url_launcher_ohos"
+      ref: HEAD
+      resolved-ref: aa8bd278b88bd13ade0d4d95e802b8a29865d028
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+    source: git
+    version: "6.0.38"
   url_launcher_platform_interface:
     dependency: transitive
     description:

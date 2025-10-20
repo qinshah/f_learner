@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:appflowy_editor/appflowy_editor.dart';
+import 'package:f_learner/data/final_value.dart';
 import 'package:f_learner/module.package/rich_text/appflowy/pages/desktop_editor.dart';
 import 'package:f_learner/module.package/rich_text/appflowy/pages/mobile_editor.dart';
 import 'package:flutter/material.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 class Editor extends StatefulWidget {
   const Editor({
@@ -110,13 +110,13 @@ class _EditorState extends State<Editor> {
                   registerWordCounter();
                 }
 
-                if (UniversalPlatform.isDesktopOrWeb) {
+                if (FinalValue.runInMobile) {
+                  return MobileEditor(editorState: editorState!);
+                } else {
                   return DesktopEditor(
                     editorState: editorState!,
                     textDirection: widget.textDirection,
                   );
-                } else if (UniversalPlatform.isMobile) {
-                  return MobileEditor(editorState: editorState!);
                 }
               }
 
@@ -133,7 +133,7 @@ class _EditorState extends State<Editor> {
               color: Colors.black.withValues(alpha: 0.1),
               borderRadius: BorderRadius.only(
                 topLeft: const Radius.circular(8),
-                bottomLeft: UniversalPlatform.isMobile
+                bottomLeft: FinalValue.runInMobile
                     ? const Radius.circular(8)
                     : Radius.zero,
               ),

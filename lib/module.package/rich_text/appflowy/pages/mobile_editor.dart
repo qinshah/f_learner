@@ -1,7 +1,7 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 class MobileEditor extends StatefulWidget {
   const MobileEditor({
@@ -58,53 +58,46 @@ class _MobileEditorState extends State<MobileEditor> {
         dividerMobileToolbarItem,
       ],
       editorState: editorState,
-      child: Column(
-        children: [
-          // build appflowy editor
-          Expanded(
-            child: MobileFloatingToolbar(
-              editorState: editorState,
-              editorScrollController: editorScrollController,
-              floatingToolbarHeight: 32,
-              toolbarBuilder: (context, anchor, closeToolbar) {
-                return AdaptiveTextSelectionToolbar.editable(
-                  clipboardStatus: ClipboardStatus.pasteable,
-                  onCopy: () {
-                    copyCommand.execute(editorState);
-                    closeToolbar();
-                  },
-                  onCut: () => cutCommand.execute(editorState),
-                  onPaste: () => pasteCommand.execute(editorState),
-                  onSelectAll: () => selectAllCommand.execute(editorState),
-                  onLiveTextInput: null,
-                  onLookUp: null,
-                  onSearchWeb: null,
-                  onShare: null,
-                  anchors: TextSelectionToolbarAnchors(
-                    primaryAnchor: anchor,
-                  ),
-                );
-              },
-              child: AppFlowyEditor(
-                editorStyle: editorStyle,
-                editorState: editorState,
-                editorScrollController: editorScrollController,
-                blockComponentBuilders: blockComponentBuilders,
-                showMagnifier: true,
-                // showcase 3: customize the header and footer.
-                header: Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0),
-                  child: Image.asset(
-                    'assets/images/header.png',
-                  ),
-                ),
-                footer: const SizedBox(
-                  height: 100,
-                ),
-              ),
+      child: MobileFloatingToolbar(
+        editorState: editorState,
+        editorScrollController: editorScrollController,
+        floatingToolbarHeight: 32,
+        toolbarBuilder: (context, anchor, closeToolbar) {
+          return AdaptiveTextSelectionToolbar.editable(
+            clipboardStatus: ClipboardStatus.pasteable,
+            onCopy: () {
+              copyCommand.execute(editorState);
+              closeToolbar();
+            },
+            onCut: () => cutCommand.execute(editorState),
+            onPaste: () => pasteCommand.execute(editorState),
+            onSelectAll: () => selectAllCommand.execute(editorState),
+            onLiveTextInput: null,
+            onLookUp: null,
+            onSearchWeb: null,
+            onShare: null,
+            anchors: TextSelectionToolbarAnchors(
+              primaryAnchor: anchor,
+            ),
+          );
+        },
+        child: AppFlowyEditor(
+          editorStyle: editorStyle,
+          editorState: editorState,
+          editorScrollController: editorScrollController,
+          blockComponentBuilders: blockComponentBuilders,
+          showMagnifier: true,
+          // showcase 3: customize the header and footer.
+          header: Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: Image.asset(
+              'assets/images/header.png',
             ),
           ),
-        ],
+          footer: const SizedBox(
+            height: 100,
+          ),
+        ),
       ),
     );
   }
@@ -127,7 +120,7 @@ class _MobileEditorState extends State<MobileEditor> {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       magnifierSize: const Size(144, 96),
-      mobileDragHandleBallSize: UniversalPlatform.isIOS
+      mobileDragHandleBallSize: defaultTargetPlatform == TargetPlatform.iOS
           ? const Size.square(12)
           : const Size.square(8),
       mobileDragHandleLeftExtend: 12.0,
