@@ -2,19 +2,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-typedef F<S extends SfViewState, L extends SfViewLogic> = Widget Function(
+typedef BuildF<S extends SfViewState, L extends SfViewLogic> = Widget Function(
     S state, L logic);
 
 class SfView<S extends SfViewState, L extends SfViewLogic<S>>
     extends StatelessWidget {
-  const SfView(this.f, {super.key});
+  const SfView(this.buildF, {super.key});
 
-  final F<S, L> f;
+  final BuildF<S, L> buildF;
 
   @override
   Widget build(BuildContext context) {
     final logic = context.watch<L>();
-    return f(logic.state, logic);
+    return buildF(logic.state, logic);
   }
 }
 
