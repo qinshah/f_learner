@@ -1,20 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:vector_math/vector_math_64.dart' show Quad, Vector3;
 
-class InteractiveViewerBuilder extends StatefulWidget {
-  const InteractiveViewerBuilder({super.key});
+class ScrollViewPage extends StatelessWidget {
+  const ScrollViewPage({super.key});
 
   @override
-  State<InteractiveViewerBuilder> createState() =>
-      _InteractiveViewerBuilderState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('滚动视图')),
+      body: ListViewBuilder(),
+      // body: InteractiveViewerView(),
+      // body: InteractiveViewerBuilder(),
+    );
+  }
+}
+// class _MyItem{
+//   final Offset offset;
+
+//   final
+
+//   _MyItem(this.offset);
+
+// }
+
+class ListViewBuilder extends StatelessWidget {
+  const ListViewBuilder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // 结论：在视口中的组件不会重复构建
+    // 快速滚动时也会卡顿，指定itemExtent可以减缓
+    return ListView.builder(
+      itemCount: 1000,
+      itemExtent: 50,
+      itemBuilder: (_, index) => _Tile(index),
+    );
+    // ignore: dead_code 自定义ListView
+    return Scrollable(
+      viewportBuilder: (BuildContext context, ViewportOffset position) {
+        return Viewport(
+          offset: position,
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (_, index) => ListTile(title: Text('第$index行')),
+                childCount: 1000,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
-class _InteractiveViewerBuilderState extends State<InteractiveViewerBuilder> {
-  static const double _cellWidth = 160.0;
-  static const double _cellHeight = 80.0;
+class _Tile extends StatefulWidget {
+  const _Tile(this.index);
+
+  final int index;
+
+  @override
+  State<_Tile> createState() => _TileState();
+}
+
+class _TileState extends State<_Tile> {
+  int _counter = 0;
+  @override
+  Widget build(BuildContext context) {
+    debugPrint('第${widget.index}行第${++_counter}次构建');
+    return ListTile(title: Text('第${widget.index}行'));
+  }
+}
+
+class InteractiveViewerView extends StatelessWidget {
+  const InteractiveViewerView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // 结论：一旦移动就会重复构建
+    return InteractiveViewer(
+      child: Center(child: FlutterLogo(size: 100)),
+    );
+  }
+}
+
+class InteractiveViewerBuilder extends StatelessWidget {
+  const InteractiveViewerBuilder({super.key});
+  final _cellWidth = 160.0;
+  final _cellHeight = 80.0;
 
   // Returns the axis aligned bounding box for the given Quad, which might not
-  // be axis aligned.
   Rect _axisAlignedBoundingBox(Quad quad) {
     double xMin = quad.point0.x;
     double xMax = quad.point0.x;
@@ -43,30 +119,24 @@ class _InteractiveViewerBuilderState extends State<InteractiveViewerBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('InteractiveViewerBuilder'),
-      ),
-      body: Center(
-        child: InteractiveViewer.builder(
-          boundaryMargin: const EdgeInsets.all(double.infinity),
-          builder: (BuildContext context, Quad viewport) {
-            return _TableBuilder(
-              cellWidth: _cellWidth,
+    // 结论：在视口中的组件一旦viewport改变就会重新构建
+    return InteractiveViewer.builder(
+      boundaryMargin: const EdgeInsets.all(double.infinity),
+      builder: (BuildContext context, Quad viewport) {
+        return _TableBuilder(
+          cellWidth: _cellWidth,
+          cellHeight: _cellHeight,
+          viewport: _axisAlignedBoundingBox(viewport),
+          builder: (BuildContext context, int row, int column) {
+            return _Item(
               cellHeight: _cellHeight,
-              viewport: _axisAlignedBoundingBox(viewport),
-              builder: (BuildContext context, int row, int column) {
-                return _Item(
-                  cellHeight: _cellHeight,
-                  cellWidth: _cellWidth,
-                  row: row,
-                  column: column,
-                );
-              },
+              cellWidth: _cellWidth,
+              row: row,
+              column: column,
             );
           },
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -93,14 +163,14 @@ class _ItemState extends State<_Item> {
   int _buildCounter = 0;
   @override
   Widget build(BuildContext context) {
-    print('第${widget.row}行 ${widget.column}列第${++_buildCounter}次构建}');
+    debugPrint('第${widget.row}行 ${widget.column}列第${++_buildCounter}次构建}');
     return Container(
       height: widget.cellHeight,
       width: widget.cellWidth,
       color: widget.row % 2 + widget.column % 2 == 1
           ? Colors.white
           : Colors.grey.shade300,
-      child: Align(child: Text('${widget.row} x ${widget.column}')),
+      child: Align(child: Text('${widget.row}，${widget.column}')),
     );
   }
 }
@@ -136,6 +206,7 @@ class _TableBuilder extends StatelessWidget {
       // See: https://api.flutter.dev/flutter/widgets/InteractiveViewer/constrained.html
       width: 1,
       height: 1,
+      // 缺陷，由于超出Stack，组件无法监听点击事件
       child: Stack(
         clipBehavior: Clip.none,
         children: <Widget>[
