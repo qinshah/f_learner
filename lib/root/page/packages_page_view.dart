@@ -5,6 +5,7 @@ import 'package:f_learner/module.old/open_file/open_file_page.dart';
 import 'package:f_learner/module.old/volume_ctrl/volume_ctrl_page.dart';
 import 'package:f_learner/module.old/waterfall_layout/waterfall_layout_page.dart';
 import 'package:f_learner/module.package/rich_text/appflowy/appflowy_page.dart';
+import 'package:f_learner/module.package/share_plus/share_plus_page.dart';
 import 'package:f_learner/root/category_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +49,7 @@ class PackagesPageView extends StatelessWidget {
           PageModel3('lottie动画', const LottiePage()),
         ]),
         CategoryWidget(name: '系统功能', pages: [
+          PageModel3('内容分享', const SharePlusPage()),
           PageModel3('音量控制', const VolumeCtrlPage()),
           PageModel3('打开文件', const OpenFilePage()),
         ]),
