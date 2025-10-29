@@ -11,79 +11,97 @@ class InfiniteCanvas extends StatefulWidget {
 
 class _InfiniteCanvasState extends State<InfiniteCanvas> {
   Offset _topLeft = Offset.zero;
+  double _scale = 1;
+  double _startScale = 1;
+  final _minScale = 0.5;
+  final _maxScale = 5;
   final _random = Random();
   late List<Offset> _offsets = _randomOffets();
-  Size _size = Size.zero;
+  Size _canvasSize = Size.zero;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('无限画布')),
-      body: GestureDetector(
-        onPanUpdate: (details) => setState(() => _topLeft += details.delta),
-        child: LayoutBuilder(builder: (context, constraints) {
-          _size = constraints.biggest;
-          return ColoredBox(
-            color: Colors.grey,
-            child: SizedBox(
-              width: _size.width,
-              height: _size.height,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Positioned(
-                    top: _topLeft.dy,
-                    left: _topLeft.dx,
-                    child: Card(
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: () {},
-                        child: Padding(
-                          padding: EdgeInsets.all(6),
-                          child: Text('左上角原点'),
+      body: LayoutBuilder(builder: (context, constraints) {
+        _canvasSize = constraints.biggest / _minScale;
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned(
+              width: _canvasSize.width,
+              height: _canvasSize.height,
+              child: Transform.scale(
+                scale: _scale,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onScaleUpdate: (details) => setState(() {
+                    _topLeft += details.focalPointDelta;
+                    _scale = (_startScale + details.scale - 1)
+                        .clamp(_minScale, _maxScale)
+                        .toDouble();
+                  }),
+                  onScaleStart: (_) => _startScale = _scale,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: _topLeft.dy,
+                        left: _topLeft.dx,
+                        child: Card(
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(12),
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.all(6),
+                              child: Text('左上角原点'),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      for (final offset in _offsets) _buildOffsetItem(offset),
+                    ],
                   ),
-                  for (final offset in _offsets) _buildOffsetItem(offset),
-                  Positioned(
-                    top: 10,
-                    child: Card(
-                      color: Colors.teal.shade300,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: () {
-                          setState(() => _offsets = _randomOffets());
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(6),
-                          child: Text('随机刷新'),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 10,
-                    right: 10,
-                    child: IconButton(
-                      icon: const Icon(Icons.refresh),
-                      onPressed: () => setState(() => _topLeft = Offset.zero),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          );
-        }),
-      ),
+            Positioned(
+              top: 10,
+              child: Card(
+                color: Colors.teal.shade300,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () {
+                    setState(() => _offsets = _randomOffets());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: Text('随机刷新'),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 10,
+              right: 10,
+              child: IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: () => setState(() {
+                  _topLeft = Offset.zero;
+                  _scale = 1;
+                }),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 
   List<Offset> _randomOffets([int count = 25]) {
     return List.generate(count, (_) {
       return Offset(
-        _random.nextDouble() * _size.width,
-        _random.nextDouble() * _size.height,
+        _random.nextDouble() * _canvasSize.width,
+        _random.nextDouble() * _canvasSize.height,
       );
     });
   }

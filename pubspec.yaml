@@ -22,10 +22,7 @@ dependencies:
     git:
       url: "https://gitcode.com/openharmony-sig/fluttertpc_open_file.git"
       path: "ohos"
-  file_selector: # 文件选择器
-    git:
-      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
-      path: "packages/file_selector/file_selector"
+  file_selector: # 文件选择器.鸿蒙适配
   lottie: ^3.3.1 # lottie动画
   flutter_svg: ^2.2.0
   # switch(defaultTargetPlatform)缺少TargetPlatform.ohos
@@ -49,11 +46,16 @@ dependencies:
   #   git:
   #     url: https://gitcode.com/openharmony-sig/fluttertpc_file_picker.git
   #     path: ohos
-  path_provider: ^2.1.5 # 应用可用路径.鸿蒙适配
+  path_provider: # 应用可用路径.鸿蒙适配
   printing: ^5.14.2
   share_plus: # 分享.鸿蒙适配
+  vyuh_node_flow: ^0.2.5
 
 dependency_overrides:
+  file_selector: # 文件选择器.鸿蒙适配
+    git:
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+      path: "packages/file_selector/file_selector"
   image_picker: # 图片选择.鸿蒙适配
     git:
       url: https://gitcode.com/openharmony-tpc/flutter_packages.git
@@ -63,7 +65,7 @@ dependency_overrides:
       url: https://gitcode.com/openharmony-tpc/flutter_packages.git
       path: packages/url_launcher/url_launcher
       ref: br_url_launcher_v6.3.1_ohos
-  path_provider: # 应用路径提供.鸿蒙适配
+  path_provider: # 应用可用路径.鸿蒙适配
     git:
       url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
       path: "packages/path_provider/path_provider"

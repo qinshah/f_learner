@@ -9,9 +9,9 @@ class ScrollViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('滚动视图')),
-      body: ListViewBuilder(),
+      // body: ListViewBuilder(),
       // body: InteractiveViewerView(),
-      // body: InteractiveViewerBuilder(),
+      body: InteractiveViewerBuilder(),
     );
   }
 }
