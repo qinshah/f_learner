@@ -47,6 +47,7 @@ dependencies:
   path_provider: # 应用可用路径.鸿蒙适配
   printing: ^5.14.2
   share_plus: # 分享.鸿蒙适配
+  vyuh_node_flow: ^0.2.5
 
 dependency_overrides:
   file_selector: # 文件选择器.鸿蒙适配
