@@ -2,7 +2,7 @@ import 'package:f_learner/data_model/page_model.dart';
 import 'package:f_learner/module.old/flame/flame_page.dart';
 import 'package:f_learner/module.old/lottie/lottie_page.dart';
 import 'package:f_learner/module.old/open_file/open_file_page.dart';
-import 'package:f_learner/module.package/graph_editor/vyuh_node_flow_page.dart';
+// import 'package:f_learner/module.package/graph_editor/vyuh_node_flow_page.dart';
 import 'package:f_learner/module.package/rich_text/fleather_page.dart';
 import 'package:f_learner/module.package/rich_text/gpt_md_page.dart';
 import 'package:f_learner/module.package/rich_text/quill_page.dart';
@@ -22,7 +22,8 @@ class PackagesPageView extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       children: [
         CategoryWidget(name: '图形编辑器', pages: [
-          PageModel3('vyuh_node_flow', const VyuhNodeFlowPage()),
+          // 版本兼容问题暂无法在3.32运行
+          // PageModel3('vyuh_node_flow', const VyuhNodeFlowPage()),
         ]),
         CategoryWidget(name: '富文本编辑器', pages: [
           PageModel3('appflowy', const AppflowyPage()),
