@@ -1,5 +1,6 @@
 import 'package:f_learner/module.old/infinite_canvas.dart/infinite_canvas.dart';
 import 'package:f_learner/module.old/infinite_canvas.dart/infinite_canvas2.dart';
+import 'package:f_learner/module.old/infinite_canvas.dart/infinite_canvas3.dart';
 import 'package:f_learner/module.old/interactive_viewer_builder/scroll_view_page.dart';
 import 'package:f_learner/module.old/interactive_viewer_builder/word_layout_page.dart';
 import 'package:f_learner/module.old/layout/flex_layout_page.dart';
@@ -22,6 +23,7 @@ class OthersPageView extends StatelessWidget {
       children: [
         CategoryWidget(name: '我的测试', pages: [
           PageModel3('Word布局尝试', const WordLayoutPage()),
+          PageModel3('无限画布3', const InfiniteCanvas3()),
           PageModel3('无限画布2', const InfiniteCanvas2()),
           PageModel3('无限画布', const InfiniteCanvas()),
           PageModel3('滚动视图', const ScrollViewPage()),
