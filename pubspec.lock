@@ -818,10 +818,11 @@ packages:
   printing:
     dependency: "direct main"
     description:
-      name: printing
-      sha256: "482cd5a5196008f984bb43ed0e47cbfdca7373490b62f3b27b3299275bf22a93"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: printing
+      ref: "br_printing-v5.14.2_ohos"
+      resolved-ref: deff8bde9e6beced0406cefc1a52e921b9193459
+      url: "https://gitcode.com/openharmony-sig/fluttertpc_printing.git"
+    source: git
     version: "5.14.2"
   provider:
     dependency: "direct main"
@@ -902,18 +903,18 @@ packages:
     dependency: transitive
     description:
       name: shared_preferences_android
-      sha256: "34266009473bf71d748912da4bf62d439185226c03e01e2d9687bc65bbfcb713"
+      sha256: bd14436108211b0d4ee5038689a56d4ae3620fd72fd6036e113bf1345bc74d9e
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.4.15"
+    version: "2.4.13"
   shared_preferences_foundation:
     dependency: transitive
     description:
       name: shared_preferences_foundation
-      sha256: "1c33a907142607c40a7542768ec9badfd16293bac51da3a4482623d15845f88b"
+      sha256: "6a52cfcdaeac77cad8c97b539ff688ccfc458c007b4db12be584fbe5c0e49e03"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.5.5"
+    version: "2.5.4"
   shared_preferences_linux:
     dependency: transitive
     description:

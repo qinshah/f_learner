@@ -56,11 +56,11 @@ dependencies:
   pdf: ^3.11.3 # pdf
 
 dependency_overrides:
-  # printing: # 打印.鸿蒙适配
-  #   git:
-  #     url: https://gitcode.com/openharmony-sig/fluttertpc_printing.git
-  #     path: printing
-  #     ref: br_printing-v5.14.2_ohos
+  printing: # 打印.鸿蒙适配
+    git:
+      url: https://gitcode.com/openharmony-sig/fluttertpc_printing.git
+      path: printing
+      ref: br_printing-v5.14.2_ohos
   shared_preferences: # 存储.鸿蒙适配
     git:
       url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
