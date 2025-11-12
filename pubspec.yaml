@@ -47,11 +47,25 @@ dependencies:
   #     url: https://gitcode.com/openharmony-sig/fluttertpc_file_picker.git
   #     path: ohos
   path_provider: # 应用可用路径.鸿蒙适配
-  printing: ^5.14.2
   share_plus: # 分享.鸿蒙适配
   vyuh_node_flow: ^0.2.5
+  shared_preferences: # 存储.鸿蒙适配
+  archive: ^4.0.7 # 压缩
+  path: ^1.9.1 # 文件路径
+  printing: ^5.14.2 # 打印
+  pdf: ^3.11.3 # pdf
 
 dependency_overrides:
+  # printing: # 打印.鸿蒙适配
+  #   git:
+  #     url: https://gitcode.com/openharmony-sig/fluttertpc_printing.git
+  #     path: printing
+  #     ref: br_printing-v5.14.2_ohos
+  shared_preferences: # 存储.鸿蒙适配
+    git:
+      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+      path: "packages/shared_preferences/shared_preferences"
+      ref: "br_shared_preferences-v2.5.3_ohos"
   file_selector: # 文件选择器.鸿蒙适配
     git:
       url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
@@ -87,3 +101,4 @@ flutter:
     - assets/img/
     - images/
     - assets/images/
+    - assets/font/

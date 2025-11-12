@@ -2,6 +2,7 @@ import 'package:f_learner/data_model/page_model.dart';
 import 'package:f_learner/module.old/flame/flame_page.dart';
 import 'package:f_learner/module.old/lottie/lottie_page.dart';
 import 'package:f_learner/module.old/open_file/open_file_page.dart';
+import 'package:f_learner/module.package/printing/pdf_print_page.dart';
 // import 'package:f_learner/module.package/graph_editor/vyuh_node_flow_page.dart';
 import 'package:f_learner/module.old/volume_ctrl/volume_ctrl_page.dart';
 import 'package:f_learner/module.old/waterfall_layout/waterfall_layout_page.dart';
@@ -33,6 +34,9 @@ class PackagesPageView extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(8),
       children: [
+        CategoryWidget(name: '打印', pages: [
+          PageModel3('pdf打印', const PdfPrintPage()),
+        ]),
         CategoryWidget(name: '图形编辑器', pages: [
           // 版本兼容问题暂无法在3.32运行
           // PageModel3('vyuh_node_flow', const VyuhNodeFlowPage()),
