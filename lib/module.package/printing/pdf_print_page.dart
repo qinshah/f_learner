@@ -13,43 +13,47 @@ class PdfPrintPage extends StatefulWidget {
 
 class _PdfPrintPageState extends State<PdfPrintPage> {
   pw.Font? font;
-
-  Future<void> _t() async {
-    font ??= pw.Font.ttf(
-        await rootBundle.load('assets/font/SourceHanSansSC-VF.ttf'));
-    final doc = pw.Document();
-    doc.addPage(
-      pw.Page(
-        pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
-          return pw.Center(
-            child: pw.Text(
-              '你好👋',
-              style: pw.TextStyle(font: font, fontSize: 50),
-            ),
-          );
-        },
-      ),
-    );
-    Printing.layoutPdf(onLayout: (PdfPageFormat format) {
-      return doc.save();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('pdf打印'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              _t();
-            },
-            child: const Text('打印'),
-          ),
-        ],
+      appBar: AppBar(title: const Text('pdf打印')),
+      body: PdfPreview(
+        build: (format) => _generatePdf(format),
       ),
     );
+  }
+
+  Future<Uint8List> _generatePdf(PdfPageFormat format) async {
+    final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
+    font ??= pw.Font.ttf(
+        await rootBundle.load('assets/font/SourceHanSansSC-VF.ttf'));
+
+    pdf.addPage(pw.Page(
+      pageFormat: format,
+      build: (context) {
+        return pw.Center(
+          child: pw.Text('第一页', style: pw.TextStyle(font: font, fontSize: 100)),
+        );
+      },
+    ));
+    pdf.addPage(pw.Page(
+      pageFormat: format,
+      build: (context) {
+        return pw.Column(
+          children: [
+            pw.SizedBox(
+              width: double.infinity,
+              child: pw.FittedBox(
+                child: pw.Text('第二页', style: pw.TextStyle(font: font)),
+              ),
+            ),
+            pw.SizedBox(height: 20),
+            pw.Flexible(child: pw.FlutterLogo()),
+          ],
+        );
+      },
+    ));
+
+    return pdf.save();
   }
 }
