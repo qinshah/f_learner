@@ -156,7 +156,7 @@ class _LayeredGraphViewPageState extends State<LayeredGraphViewPage> {
                 Switch(
                   value: builder.postStraighten,
                   onChanged: (v) => setState(() => builder.postStraighten = v),
-                  activeThumbColor: Colors.blue,
+                  activeColor: Colors.blue, // 兼容ohos分支旧版flutter
                 ),
               ],
             ),
