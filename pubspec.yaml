@@ -52,6 +52,7 @@ dependencies:
   path: ^1.9.1 # 文件路径
   printing: ^5.14.2 # 打印
   pdf: ^3.11.3 # pdf
+  graphview: ^1.5.1
 
 dependency_overrides:
   # printing: # 打印.鸿蒙适配
