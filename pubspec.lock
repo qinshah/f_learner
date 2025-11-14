@@ -189,11 +189,11 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/file_selector/file_selector"
-      ref: HEAD
-      resolved-ref: dbe2571a58536fadf75a6ab1788b76931fd612e6
+      ref: "br_file_selector-v1.0.3_ohos"
+      resolved-ref: eb78bfe71b7164da382d8354058700bfe989878c
       url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
     source: git
-    version: "1.0.0"
+    version: "1.0.3"
   file_selector_android:
     dependency: transitive
     description:
@@ -231,8 +231,8 @@ packages:
     description:
       path: "packages/file_selector/file_selector_ohos"
       ref: HEAD
-      resolved-ref: dbe2571a58536fadf75a6ab1788b76931fd612e6
-      url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
+      resolved-ref: b176e2eb854544a9c743e69ddb8b9d0e016e379c
+      url: "https://gitcode.com/openharmony-sig/flutter_packages.git"
     source: git
     version: "0.5.0+2"
   file_selector_platform_interface:

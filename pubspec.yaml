@@ -69,6 +69,7 @@ dependency_overrides:
     git:
       url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
       path: "packages/file_selector/file_selector"
+      ref: br_file_selector-v1.0.3_ohos
   image_picker: # 图片选择.鸿蒙适配
     git:
       url: https://gitcode.com/openharmony-tpc/flutter_packages.git
