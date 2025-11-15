@@ -1,7 +1,6 @@
 import 'package:f_learner/data_model/page_model.dart';
 import 'package:f_learner/module.old/flame/flame_page.dart';
 import 'package:f_learner/module.old/lottie/lottie_page.dart';
-import 'package:f_learner/module.old/open_file/open_file_page.dart';
 import 'package:f_learner/module.package/graph_editor/graphview/graphview_page.dart';
 import 'package:f_learner/module.package/printing/pdf_print_page.dart';
 // import 'package:f_learner/module.package/graph_editor/vyuh_node_flow_page.dart';
@@ -62,7 +61,6 @@ class PackagesPageView extends StatelessWidget {
         CategoryWidget(name: '系统功能', pages: [
           PageModel3('内容分享', const SharePlusPage()),
           PageModel3('音量控制', const VolumeCtrlPage()),
-          PageModel3('打开文件', const OpenFilePage()),
         ]),
       ],
     );
