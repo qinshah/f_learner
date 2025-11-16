@@ -2,6 +2,7 @@ import 'package:f_learner/data_model/page_model.dart';
 import 'package:f_learner/module.function/select_file.dart';
 import 'package:f_learner/module.function/open_file_by_system.dart';
 import 'package:f_learner/module.function/reveal_in_file_manager.dart';
+import 'package:f_learner/module.function/get_os_type.dart';
 import 'package:flutter/material.dart';
 
 import '../category_widget.dart';
@@ -15,7 +16,7 @@ class FunctionPage extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       children: [
         CategoryWidget(name: '设备', pages: [
-          // PageModel3('操作系统类型', GetOSType()),
+          PageModel3('获取操作系统类型', GetOSType()),
         ]),
         CategoryWidget(name: '文件管理', pages: [
           PageModel3('选取文件/文件夹', SelectFile()),
