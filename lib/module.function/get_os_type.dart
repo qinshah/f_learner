@@ -47,15 +47,6 @@ class _GetOSTypeState extends State<GetOSType> {
             const SizedBox(height: 10),
             Text('是否为移动操作系统: ${OS.isMobileOS}'),
             const SizedBox(height: 20),
-            if (OS.isHarmony) ...[
-              const Text('鸿蒙设备信息:'),
-              const SizedBox(height: 10),
-              const Text(
-                '说明: 鸿蒙设备类型为2in1时表示PC操作系统，\n该信息已用于确定是否为PC操作系统',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-                textAlign: TextAlign.center,
-              ),
-            ],
           ],
         ),
       ),
