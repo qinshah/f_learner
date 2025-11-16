@@ -644,6 +644,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.3"
+  open_file_macos:
+    dependency: transitive
+    description:
+      name: open_file_macos
+      sha256: cde004426515712d72d003b38e0b407636094e53266653c0d77ed7c60be88ef2
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.0"
   open_file_ohos:
     dependency: "direct main"
     description:
@@ -685,6 +693,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "8.0.0"
+  os_type:
+    dependency: "direct main"
+    description:
+      name: os_type
+      sha256: "06966db0645d191ccf01ff11106d225a9c748a9f3ff59ff64464ffefe196514f"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.2"
   parchment:
     dependency: transitive
     description:
@@ -964,6 +980,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.4.1"
+  show_in_file_manager:
+    dependency: "direct main"
+    description:
+      name: show_in_file_manager
+      sha256: "247208c1fa995a125d0e6126dba53ffe24f3a8276a40cae311d0753435aa744c"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
   sky_engine:
     dependency: transitive
     description: flutter

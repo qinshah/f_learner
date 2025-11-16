@@ -66,6 +66,7 @@ SPEC CHECKSUMS:
   file_selector_macos: 9e9e068e90ebee155097d00e89ae91edb2374db7
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
   open_file_mac: 01874b6d6a2c1485ac9b126d7105b99102dea2cf
+  open_file_macos: 3f4d6849c5227e20c9e4c231a7a75483b717d82a
   path_provider_foundation: bb55f6dbba17d0dccd6737fe6f7f34fbd0376880
   printing: c4cf83c78fd684f9bc318e6aadc18972aa48f617
   quill_native_bridge_macos: 2b005cb56902bb740e0cd9620aa399dfac6b4882
