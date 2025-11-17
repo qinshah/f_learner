@@ -55,6 +55,8 @@ dependencies:
   graphview: ^1.5.1 # 图形绘制组件
   os_type: ^0.2.2 # os类型判断
   show_in_file_manager: ^0.0.2 # 在文件管理器中显示文件
+  hive_ce: ^2.15.1
+  hive_ce_flutter: ^2.3.3
 
 dependency_overrides:
   # printing: # 打印.鸿蒙适配
@@ -93,6 +95,8 @@ dependency_overrides:
 
 dev_dependencies:
   flutter_lints: ^5.0.0
+  hive_ce_generator: ^1.10.0
+  build_runner: ^2.10.3
 
 flutter:
   uses-material-design: true

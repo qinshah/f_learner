@@ -3,6 +3,7 @@ import 'package:f_learner/module.function/select_file.dart';
 import 'package:f_learner/module.function/open_file_by_system.dart';
 import 'package:f_learner/module.function/reveal_in_file_manager.dart';
 import 'package:f_learner/module.function/get_os_type.dart';
+import 'package:f_learner/module.function/hive_ce.dart';
 import 'package:flutter/material.dart';
 
 import '../category_widget.dart';
@@ -23,7 +24,9 @@ class FunctionPage extends StatelessWidget {
           PageModel3('在文件管理器中显示', RevealInFileManager()),
           PageModel3('使用系统打开文件', OpenFileBySystem()),
         ]),
-        CategoryWidget(name: '本地存储', pages: []),
+        CategoryWidget(name: '本地存储', pages: [
+          PageModel3('Hive CE', HiveCE()),
+        ]),
       ],
     );
   }
