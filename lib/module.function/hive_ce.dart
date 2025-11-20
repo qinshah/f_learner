@@ -9,7 +9,7 @@ class HiveCE extends StatefulWidget {
 }
 
 class _HiveCEState extends State<HiveCE> {
-  final counterBox = 'counter';
+  final _counterBoxName = 'HiveCE';
 
   bool _loding = true;
 
@@ -21,7 +21,7 @@ class _HiveCEState extends State<HiveCE> {
 
   Future<void> _init() async {
     await Hive.initFlutter();
-    final box = await Hive.openBox(counterBox);
+    final box = await Hive.openBox(_counterBoxName);
     if (box.isEmpty) {
       await box.add(0);
     }
@@ -35,37 +35,85 @@ class _HiveCEState extends State<HiveCE> {
     if (_loding) {
       return const Center(child: CircularProgressIndicator());
     }
-    final textTheme = TextTheme.of(context);
-    final box = Hive.box(counterBox);
+    final box = Hive.box(_counterBoxName);
     return Scaffold(
       appBar: AppBar(title: const Text('Hive CE Example')),
       body: Builder(builder: (context) {
         if (_loding) {
           return const Center(child: CircularProgressIndicator());
         }
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('You have pushed the button this many times:'),
-              ValueListenableBuilder(
-                valueListenable: box.listenable(),
-                builder: (context, box, widget) {
-                  return Text(
-                    box.getAt(0).toString(),
-                    style: textTheme.headlineMedium,
-                  );
-                },
-              ),
-            ],
-          ),
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('重启后数据还存在', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            const Text('按下按钮的总次数'),
+            SizedBox(height: 2),
+            ElevatedButton(
+              onPressed: () {
+                box.putAt(0, box.getAt(0) + 1);
+                setState(() {
+                  // box[0] changed
+                });
+              },
+              child: Text('${box.getAt(0)}'),
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('将'),
+                SizedBox(
+                  width: 50,
+                  child: TextField(
+                    onChanged: (value) => _putValue = value,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => box.put(_putKey, _putValue),
+                  child: Text('存储'),
+                ),
+                Text('到盒子'),
+                SizedBox(
+                  width: 50,
+                  child: TextField(
+                    onChanged: (value) => _putKey = value,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    setState(() => _gotValue = box.get(_getKey));
+                  },
+                  child: Text('获取'),
+                ),
+                Text('盒子'),
+                SizedBox(
+                  width: 60,
+                  child: TextField(
+                    onChanged: (value) => _getKey = value,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Text('的数据：'),
+              ],
+            ),
+            SizedBox(height: 10),
+            Text(_gotValue),
+          ],
         );
       }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => box.putAt(0, box.getAt(0) + 1),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
     );
   }
+
+  String _putValue = '';
+  String _putKey = '';
+  String _getKey = '';
+  String _gotValue = '';
 }
