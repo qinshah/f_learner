@@ -13,6 +13,19 @@
         "reveal": "always"
       },
       "problemMatcher": []
-    }
+    },
+    {
+      "label": "build hap",
+      "type": "shell",
+      "command": "flutter",
+      "args": [
+        "build",
+        "hap"
+      ],
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
   ]
 }
