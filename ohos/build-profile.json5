@@ -5,7 +5,7 @@
         "name": "default",
         "signingConfig": "default",
         "targetSdkVersion": "5.0.5(17)",
-        "compatibleSdkVersion": "5.0.5(17)",
+        "compatibleSdkVersion": "5.0.3(15)",
         "runtimeOS": "HarmonyOS"
       }
     ],
@@ -25,13 +25,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "/Users/qshh/.ohos/config/default_ohos_qTWK4wjanR6q1-f2RGnzgf_4Siz7vmOkcdh5gUSHhKQ=.cer",
+          "certpath": "/Users/qshh/.ohos/config/default_ohos_xr0V9VIhTAduTaG0UxBRJhtdg0DCuxeby1WnYqVioHs=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B3B0AF2B07C4FF06EF731DD807D889DB67037CB61BEEBE3E857EFBCCB3538678A99072753781263",
-          "profile": "/Users/qshh/.ohos/config/default_ohos_qTWK4wjanR6q1-f2RGnzgf_4Siz7vmOkcdh5gUSHhKQ=.p7b",
+          "keyPassword": "0000001B32463A8DFE0149245E2EFBBCCE7A7A4B4238AA0FE3249EFDBEFBE50E6007B13ADA740DCB5079AC",
+          "profile": "/Users/qshh/.ohos/config/default_ohos_xr0V9VIhTAduTaG0UxBRJhtdg0DCuxeby1WnYqVioHs=.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "/Users/qshh/.ohos/config/default_ohos_qTWK4wjanR6q1-f2RGnzgf_4Siz7vmOkcdh5gUSHhKQ=.p12",
-          "storePassword": "0000001B542BCE3ABD435E10B54AA1D7970A4D956DE3DA159E92BDE2325332ED5005E1F10A19DCC39FF040"
+          "storeFile": "/Users/qshh/.ohos/config/default_ohos_xr0V9VIhTAduTaG0UxBRJhtdg0DCuxeby1WnYqVioHs=.p12",
+          "storePassword": "0000001B2AD151F97D060D49BBB6BE38087B555A878F31E80F63F1DCB56BA6869D3CC2EBB0ADAC167D4705"
         }
       }
     ],
