@@ -1,9 +1,34 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class MediaPlayer extends ChangeNotifier {
   MediaPlayerState _state = MediaPlayerState.loading;
 
   MediaPlayerState get state => _state;
+
+  Timer _hubTimer = Timer(Duration.zero, () {});
+
+  bool showHub = false;
+
+  void alwaysShowHub() {
+    _hubTimer.cancel();
+    notifyListeners();
+    showHub = true;
+  }
+
+  void reshowHub() {
+    bool wasShowHub = _hubTimer.isActive;
+    _hubTimer.cancel();
+    _hubTimer = Timer(const Duration(seconds: 2), () {
+      notifyListeners();
+      showHub = false;
+    });
+    if (!wasShowHub) {
+      notifyListeners();
+      showHub = true;
+    }
+  }
 
   bool _isFullScreen = false;
 
@@ -44,6 +69,16 @@ class MediaPlayer extends ChangeNotifier {
     await Future.delayed(Duration(seconds: seconds));
     notifyListeners();
     _state = MediaPlayerState.playing;
+  }
+
+  void toggleHub() {
+    notifyListeners();
+    if (showHub) {
+      _hubTimer.cancel();
+      showHub = false;
+    } else {
+      reshowHub();
+    }
   }
 }
 
