@@ -3,6 +3,7 @@ import 'package:f_learner/module.function/select_file.dart';
 import 'package:f_learner/module.function/open_file_by_system.dart';
 import 'package:f_learner/module.function/reveal_in_file_manager.dart';
 import 'package:f_learner/module.function/get_os_type.dart';
+import 'package:f_learner/module.function/get_layout_size.dart';
 import 'package:f_learner/module.function/hive_ce.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,9 @@ class FunctionPage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(8),
       children: [
+        CategoryWidget(name: '布局', pages: [
+          PageModel3('获取布局尺寸', GetLayoutSize()),
+        ]),
         CategoryWidget(name: '设备', pages: [
           PageModel3('获取操作系统类型', GetOSType()),
         ]),
