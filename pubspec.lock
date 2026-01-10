@@ -720,10 +720,10 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: "23f08335362185a5ea2ad3a4e597f1375e78bce8a040df5c600c8d3552ef2394"
+      sha256: e3641ec5d63ebf0d9b41bd43201a66e3fc79a65db5f61fc181f04cd27aab950c
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.17.0"
+    version: "1.16.0"
   mime:
     dependency: transitive
     description:
@@ -1101,7 +1101,7 @@ packages:
     dependency: transitive
     description:
       path: "packages/share_plus/share_plus_platform_interface"
-      ref: "br_share_plus-v10.1.1_ohos"
+      ref: "46cf97a5decaa48d8b95baee41f9f83d25a313ad"
       resolved-ref: "46cf97a5decaa48d8b95baee41f9f83d25a313ad"
       url: "https://gitcode.com/openharmony-sig/flutter_plus_plugins.git"
     source: git
@@ -1431,10 +1431,10 @@ packages:
     dependency: "direct main"
     description:
       name: vector_math
-      sha256: "80b3257d1492ce4d091729e3a67a60407d227c27241d6927be0130c98e741803"
+      sha256: d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.4"
+    version: "2.2.0"
   volume_controller:
     dependency: "direct main"
     description:
@@ -1533,4 +1533,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=3.8.0 <4.0.0"
-  flutter: ">=3.32.0"
+  flutter: ">=3.35.7"
