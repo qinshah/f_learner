@@ -26,17 +26,15 @@ dependencies:
   file_selector: # 文件选择器.鸿蒙适配
   lottie: ^3.3.1 # lottie动画
   flutter_svg: ^2.2.0
-  # switch(defaultTargetPlatform)缺少TargetPlatform.ohos
-  # flutter_quill: ^11.4.2
-  # flutter_quill_extensions: ^11.0.0
+  flutter_quill: ^11.4.2
+  flutter_quill_extensions: ^11.0.0
   re_editor: ^0.8.0
   flutter_staggered_grid_view: ^0.7.0
-  # switch(defaultTargetPlatform)缺少TargetPlatform.ohos
   fleather: ^1.26.0
   image_picker: # 图片选择.鸿蒙适配
   url_launcher: # 打开链接.鸿蒙适配
-  vector_math: ^2.1.4
-  gpt_markdown: ^1.1.2
+  vector_math: ^2.2.0
+  gpt_markdown: ^1.1.4
   appflowy_editor: ^6.1.0
   provider: ^6.1.5+1
   universal_html: ^2.2.4
@@ -63,11 +61,11 @@ dependencies:
   hive_ce_flutter: ^2.3.3 
 
 dependency_overrides:
-  printing: # 打印.鸿蒙适配
-    git:
-      url: https://gitcode.com/openharmony-sig/fluttertpc_printing.git
-      path: printing
-      ref: br_printing-v5.14.2_ohos
+  # printing: # 打印.鸿蒙适配
+  #   git:
+  #     url: https://gitcode.com/openharmony-sig/fluttertpc_printing.git
+  #     path: printing
+  #     ref: br_printing-v5.14.2_ohos
   shared_preferences: # 存储.鸿蒙适配
     git:
       url: "https://gitcode.com/openharmony-tpc/flutter_packages.git"
