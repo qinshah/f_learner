@@ -21,10 +21,11 @@ class _GetLayoutSizeState extends State<GetLayoutSize> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('蓝色区域尺寸：'),
-                  Text(constraints.biggest.toString()),
+                  // 手动调用宽高，防止release模式不显示Size实例具体尺寸
+                  Text('宽:${constraints.maxWidth} 高:${constraints.maxHeight}'),
                   SizedBox(height: 20),
                   Text('应用窗口逻辑尺寸：'),
-                  Text(MediaQuery.of(context).size.toString()),
+                  Text('宽:${MediaQuery.of(context).size.width} 高:${MediaQuery.of(context).size.height}'),
                 ],
               ),
             );
