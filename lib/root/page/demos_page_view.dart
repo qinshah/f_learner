@@ -1,4 +1,5 @@
 import 'package:f_learner/data_model/page_model.dart';
+import 'package:f_learner/module.demo/media_play/media_play_page.dart';
 import 'package:f_learner/module.demo/counter/provider_page_view.dart';
 import 'package:f_learner/module.demo/state_management/vsvl/vsvl_page.dart';
 import 'package:f_learner/module.old/bbs/bbs_page.dart';
@@ -15,6 +16,9 @@ class DemosPageView extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(8),
       children: [
+        CategoryWidget(name: '视频播放', pages: [
+          PageModel3('媒体播放(UI演示)', const MediaPlayPage()),
+        ]),
         CategoryWidget(name: '计数器状态管理', pages: [
           PageModel3('provider', const ProviderPageView()),
         ]),

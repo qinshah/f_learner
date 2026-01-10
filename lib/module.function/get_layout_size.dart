@@ -22,10 +22,12 @@ class _GetLayoutSizeState extends State<GetLayoutSize> {
                 children: [
                   Text('蓝色区域尺寸：'),
                   // 手动调用宽高，防止release模式不显示Size实例具体尺寸
-                  Text('宽:${constraints.maxWidth} 高:${constraints.maxHeight}'),
+                  Text(
+                      '宽:${constraints.maxWidth.toStringAsFixed(1)} 高:${constraints.maxHeight.toStringAsFixed(1)}'),
                   SizedBox(height: 20),
                   Text('应用窗口逻辑尺寸：'),
-                  Text('宽:${MediaQuery.of(context).size.width} 高:${MediaQuery.of(context).size.height}'),
+                  Text(
+                      '宽:${MediaQuery.of(context).size.width.toStringAsFixed(1)} 高:${MediaQuery.of(context).size.height.toStringAsFixed(1)}'),
                 ],
               ),
             );
