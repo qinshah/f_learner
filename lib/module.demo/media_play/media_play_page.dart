@@ -14,18 +14,18 @@ class MediaPlayPage extends StatefulWidget {
 }
 
 class _MediaPlayPageState extends State<MediaPlayPage> {
-  final _cntlr = MediaPlayer();
+  final _player = MediaPlayer();
 
   @override
   void initState() {
     super.initState();
-    _cntlr.loadUrlMedia('示例url');
+    _player.loadUrlMedia('示例url');
   }
 
   @override
   void dispose() {
     super.dispose();
-    _cntlr.dispose();
+    _player.dispose();
   }
 
   @override
@@ -34,7 +34,7 @@ class _MediaPlayPageState extends State<MediaPlayPage> {
       appBar: AppBar(title: const Text('简单媒体播放')),
       body: ListView(children: [
         ChangeNotifierProvider.value(
-          value: _cntlr,
+          value: _player,
           child: AspectRatio(
             aspectRatio: 16 / 9,
             child: Builder(builder: (context) {
@@ -42,7 +42,7 @@ class _MediaPlayPageState extends State<MediaPlayPage> {
                   context.select((MediaPlayer p) => p.isFullScreen);
               // 全屏时此页面不播放
               if (isFullScreen) return SizedBox();
-              return _PlayerView(cntlr: _cntlr);
+              return _PlayerView(player: _player);
             }),
           ),
         ),
@@ -53,137 +53,119 @@ class _MediaPlayPageState extends State<MediaPlayPage> {
 }
 
 class _PlayerView extends StatefulWidget {
-  const _PlayerView({required this.cntlr});
+  const _PlayerView({required this.player});
 
-  final MediaPlayer cntlr;
+  final MediaPlayer player;
 
   @override
   State<_PlayerView> createState() => _PlayerViewState();
 }
 
 class _PlayerViewState extends State<_PlayerView> {
-  Timer _hubTimer = Timer(Duration.zero, () {});
-
   // DateTime _lastTapTime = DateTime(0);
 
   PointerDeviceKind? _lastTapKind;
+
+  late final player = widget.player;
 
   @override
   Widget build(BuildContext context) {
     // 比例组件
     return MouseRegion(
-      onExit: (_) => setState(() => _hubTimer.cancel()),
-      onHover: _onHover,
+      // onExit: (_) => setState(() => _hubTimer.cancel()),
+      onHover: (_) => player.reshowHub(),
       child: Stack(
         children: [
+          ColoredBox(
+            color: Colors.teal.shade100,
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('视频区域'),
+                Builder(builder: (context) {
+                  final stata = context.select((MediaPlayer c) => c.state);
+                  return Text(switch (stata) {
+                    MediaPlayerState.loading => '加载中',
+                    MediaPlayerState.playing => '播放中',
+                    MediaPlayerState.paused => '暂停中',
+                    MediaPlayerState.buffering => '缓冲中',
+                    // ignore: unreachable_switch_case
+                    _ => '播放器出错',
+                  });
+                }),
+              ],
+            )),
+          ),
+          Builder(builder: (context) {
+            final buffering = context.select(
+                (MediaPlayer c) => c.state == MediaPlayerState.buffering);
+            if (buffering) {
+              return Center(child: const CircularProgressIndicator());
+            }
+            return SizedBox.shrink();
+          }),
+          // 触控层
           GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTapDown: (details) => _lastTapKind = details.kind,
             onDoubleTap: _onDoubleTap,
             onTap: _onTap,
-            child: ColoredBox(
-              color: Colors.teal.shade100,
-              child: Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('视频区域'),
-                  Builder(builder: (context) {
-                    final stata = context.select((MediaPlayer c) => c.state);
-                    return Text(switch (stata) {
-                      MediaPlayerState.loading => '加载中',
-                      MediaPlayerState.playing => '播放中',
-                      MediaPlayerState.paused => '暂停中',
-                      MediaPlayerState.buffering => '缓冲中',
-                      // ignore: unreachable_switch_case
-                      _ => '播放器出错',
-                    });
-                  }),
-                ],
-              )),
-            ),
+            child: SizedBox.expand(),
           ),
-          if (_hubTimer.isActive)
-            _PlayerHub(
-              cntlr: widget.cntlr,
-              onExitFullScreen: _exitFullScreen,
+          Builder(builder: (context) {
+            final showHub = context.select((MediaPlayer p) => p.showHub);
+            if (!showHub) return SizedBox.shrink();
+            return _PlayerHub(
+              cntlr: widget.player,
               onEnterFullScreen: _enterFullScreen,
-            ),
+            );
+          }),
         ],
       ),
     );
   }
 
-  void _onHover(_) => _restartHubTimer();
-
   void _onDoubleTap() {
     //  双击切换全屏
-    widget.cntlr.isFullScreen ? _exitFullScreen() : _enterFullScreen();
+    player.isFullScreen ? Navigator.of(context).maybePop() : _enterFullScreen();
   }
 
   void _onTap() {
     // 单击
     if (_lastTapKind == PointerDeviceKind.touch) {
-      if (_hubTimer.isActive) {
-        setState(() {
-          // 隐藏hub
-          _hubTimer.cancel();
-        });
-      } else {
-        _restartHubTimer();
-      }
+      player.toggleHub();
     } else {
       // TODO 鼠标单击
-      widget.cntlr.togglePlay();
+      player.togglePlay();
     }
   }
 
   /// 进入全屏
-  void _enterFullScreen() {
+  Future<void> _enterFullScreen() async {
     // 设置横屏
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    Navigator.of(context)
-        .push(MaterialPageRoute(
+    // 收起状态栏
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    player.setFullScreenValue(true);
+    await Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => Material(
         // 这里还要传递Provider上下文
         child: ChangeNotifierProvider.value(
-          value: widget.cntlr,
-          child: _PlayerView(cntlr: widget.cntlr),
+          value: widget.player,
+          child: _PlayerView(player: widget.player),
         ),
       ),
-    ))
-        .then((_) {
-      if (!widget.cntlr.isFullScreen) return;
-      // 从全屏退出后应该非全屏
-      widget.cntlr.setFullScreenValue(false);
-    });
-    widget.cntlr.setFullScreenValue(true);
-  }
-
-  /// 退出全屏
-  void _exitFullScreen() {
-    // 取消横屏
+    ));
+    // 退出后
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-    Navigator.of(context).pop();
-    widget.cntlr.setFullScreenValue(false);
-  }
-
-  void _restartHubTimer() {
-    bool wasHubActive = _hubTimer.isActive;
-    _hubTimer.cancel();
-    _hubTimer = Timer(const Duration(seconds: 2), () {
-      if (mounted) {
-        setState(() {
-          // 隐藏hub
-        });
-      }
-    });
-    if (!wasHubActive) {
-      setState(() {
-        // 显示hub
-      });
+    if (player.isFullScreen) {
+      // 从全屏退出后应该非全屏
+      player.setFullScreenValue(false);
     }
   }
 }
@@ -191,13 +173,10 @@ class _PlayerViewState extends State<_PlayerView> {
 class _PlayerHub extends StatelessWidget {
   const _PlayerHub({
     required this.cntlr,
-    required this.onExitFullScreen,
     required this.onEnterFullScreen,
   });
 
   final MediaPlayer cntlr;
-
-  final VoidCallback onExitFullScreen;
 
   final VoidCallback onEnterFullScreen;
 
@@ -207,12 +186,6 @@ class _PlayerHub extends StatelessWidget {
       fit: StackFit.expand,
       alignment: Alignment.center,
       children: [
-        Builder(builder: (context) {
-          final buffering = context.select(
-              (MediaPlayer c) => c.state == MediaPlayerState.buffering);
-          if (buffering) return _circularProgressIndicator(50);
-          return SizedBox.shrink();
-        }),
         Positioned(
           left: 0,
           top: 0,
@@ -245,8 +218,8 @@ class _PlayerHub extends StatelessWidget {
                   icon: switch (cntlr.state) {
                     MediaPlayerState.playing => const Icon(Icons.pause),
                     MediaPlayerState.paused => const Icon(Icons.play_arrow),
-                    MediaPlayerState.loading => _circularProgressIndicator(20),
-                    MediaPlayerState.buffering => _circularProgressIndicator(20),
+                    MediaPlayerState.loading => _circularProgressIcon(),
+                    MediaPlayerState.buffering => _circularProgressIcon(),
                     // ignore: unreachable_switch_case
                     _ => const Icon(Icons.error),
                   },
@@ -257,14 +230,17 @@ class _PlayerHub extends StatelessWidget {
                 ),
                 Spacer(),
                 TextButton(
-                    onPressed: () {
-                      cntlr.simulationBuffer(seconds: 5);
-                    },
-                    child: Text('模拟缓冲5s')),
+                  onPressed: cntlr.alwaysShowHub,
+                  child: Text('固定Hub'),
+                ),
+                TextButton(
+                  onPressed: () => cntlr.simulationBuffer(seconds: 5),
+                  child: Text('模拟缓冲5s'),
+                ),
                 if (cntlr.isFullScreen)
                   IconButton(
                     icon: const Icon(Icons.fullscreen_exit),
-                    onPressed: onExitFullScreen,
+                    onPressed: Navigator.of(context).maybePop,
                   )
                 else
                   IconButton(
@@ -279,10 +255,10 @@ class _PlayerHub extends StatelessWidget {
     );
   }
 
-  Widget _circularProgressIndicator(double size) {
-    return  SizedBox(
-      width: size,
-      height: size,
+  Widget _circularProgressIcon() {
+    return const SizedBox(
+      width: 20,
+      height: 20,
       child: Center(child: CircularProgressIndicator()),
     );
   }
