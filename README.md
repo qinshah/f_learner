@@ -1,16 +1,9 @@
 # f_learner
 
-A new Flutter project.
+flutter 框架学习
 
-## Getting Started
+## 分支说明
 
-This project is a starting point for a Flutter application.
+- main 主分支，支持更多功能，但一些库在switch (defaultTargetPlatform) 时未考虑ohos，所以鸿蒙flutter运行会报错，只能支持官方flutter运行
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- ohos 鸿蒙分支，可以使用鸿蒙flutter运行但剔除了那些switch (defaultTargetPlatform) 时未考虑ohos的库和功能
