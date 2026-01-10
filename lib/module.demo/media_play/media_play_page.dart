@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:f_learner/function/native/harmony_channel.dart';
 import 'package:f_learner/module.demo/media_play/media_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:os_type/os_type.dart';
 import 'package:provider/provider.dart';
 
 class MediaPlayPage extends StatefulWidget {
@@ -151,6 +153,7 @@ class _PlayerViewState extends State<_PlayerView> {
     // 收起状态栏
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     player.setFullScreenValue(true);
+    if (OS.isHarmony) HarmonyChannel.setMiniWindowLandscape(true);
     await Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => Material(
         // 这里还要传递Provider上下文
@@ -161,6 +164,7 @@ class _PlayerViewState extends State<_PlayerView> {
       ),
     ));
     // 退出后
+    if (OS.isHarmony) HarmonyChannel.setMiniWindowLandscape(false);
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setPreferredOrientations(DeviceOrientation.values);
     if (player.isFullScreen) {
