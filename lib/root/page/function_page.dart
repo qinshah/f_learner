@@ -5,7 +5,7 @@ import 'package:f_learner/module.function/reveal_in_file_manager.dart';
 import 'package:f_learner/module.function/get_os_type.dart';
 import 'package:f_learner/module.function/get_layout_size.dart';
 import 'package:f_learner/module.function/hive_ce.dart';
-import 'package:f_learner/module.function/custom_text_scale.dart';
+import 'package:f_learner/module.function/view_scale/view_scale_page.dart';
 import 'package:flutter/material.dart';
 
 import '../category_widget.dart';
@@ -19,7 +19,7 @@ class FunctionPage extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       children: [
         CategoryWidget(name: '布局', pages: [
-          PageModel3('自定义字体缩放', CustomTextScale()),
+          PageModel3('显示缩放', ViewScalePage()),
           PageModel3('获取布局尺寸', GetLayoutSize()),
         ]),
         CategoryWidget(name: '设备', pages: [
