@@ -3,6 +3,8 @@ import 'package:f_learner/module.old/env_variables/env_variables_page.dart';
 import 'package:f_learner/module.old/platform_judge/platform_judge_page.dart';
 import 'package:f_learner/module.old/process/process_page.dart';
 import 'package:f_learner/module.api/device/app_orientation_page.dart';
+import 'package:f_learner/module.api/device/mobile_status_bar_page.dart';
+import 'package:f_learner/module.api/device/safe_area_page.dart';
 import 'package:f_learner/root/category_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,9 @@ class ApiPageView extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       children: [
         CategoryWidget(name: '设备/窗口', pages: [
+          PageModel3('安全区域', const SafeAreaPage()),
           PageModel3('应用方向', const AppOrientationPage()),
+          PageModel3('手机状态栏', const MobileStatusBarPage()),
         ]),
         CategoryWidget(name: '系统', pages: [
           PageModel3('环境变量', const EnvVariablesPage()),
